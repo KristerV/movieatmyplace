@@ -1,7 +1,11 @@
 <template name="films">
-<ol>
-{{#each film}}
-	{{name}}
-{{/each}}
-</ol>
+	<ol>
+		{{#each film}}
+			<li>{{name}}</li>
+		{{/each}}
+	</ol>
+	<form name="addfilm">
+		<input type="text" name="name">
+		<input type="submit" value="Add film">
+	</form>
 </template>

@@ -1,6 +1,6 @@
-if (isset(getParams('eventId')))
+if (isset(getParams('eventId'))) // Get event from DB
 	Session.set('eventId', getParams('eventId'))
-else {
+else { // Create new event
 	Session.set('eventId', generateHash())
 	var defaultEvent = {
 		_id: Session.get('eventId'),
@@ -10,6 +10,7 @@ else {
 			date: '',
 			time: '',
 		},
+		films: []
 	}
 
 	Meteor.setTimeout(function(){

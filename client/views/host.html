@@ -1,8 +1,7 @@
 <template name="host">
-	<form>
+	<form name="hostform">
 		{{#each items}}
 			{{key}}: <input type="text" name="{{key}}" value="{{value}}"><br>
 		{{/each}}
-		<input type="submit" value="Update">
 	</form>
 </template>

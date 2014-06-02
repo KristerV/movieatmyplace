@@ -7,9 +7,9 @@ Template.host.helpers({
 });
 
 Template.host.events({
-	'submit form': function(e, tmpl) {
+	'keyup input': function(e, tmpl) {
 		e.preventDefault();
-		var formData = getFormData('input');
+		var formData = getFormData('form[name="hostform"]');
 		Events.upsert({_id: Session.get('eventId')}, {host: formData});
 	},
 });
