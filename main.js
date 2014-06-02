@@ -1,1 +1,1 @@
-MoviesList = new Meteor.Collection(null);
+Events = new Meteor.Collection(null);
