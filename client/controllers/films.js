@@ -11,15 +11,10 @@ Template.films.events({
 	'submit form': function(e, tmpl) {
 		e.preventDefault();
 
-		var Event = Events.findOne({_id: Session.get('eventId')});
-		if (!isset(Event['films']))
-			Event['films'] = [];
-
 		var formData = getFormData('form[name="addfilm"]');
 		formData['id'] = generateHash();
-		Event.films.push(formData);
 
-		Events.upsert({_id: Session.get('eventId')}, {$set: {films: Event.films}});
+		Events.upsert({_id: Session.get('eventId')}, {$push: {films: formData}});
 	},
 	'mouseenter .film': function(e, tmpl) {
 		$('.films .options').css("display", "none");
