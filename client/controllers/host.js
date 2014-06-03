@@ -7,9 +7,10 @@ Template.host.helpers({
 });
 
 Template.host.events({
-	'keyup input': function(e, tmpl) {
+	'blur input': function(e, tmpl) {
 		e.preventDefault();
+		var films = Events.findOne({_id: Session.get('eventId')})['films'];
 		var formData = getFormData('form[name="hostform"]');
-		Events.upsert({_id: Session.get('eventId')}, {host: formData});
+		Events.update({_id: Session.get('eventId')}, {host: formData, films: films});
 	},
 });

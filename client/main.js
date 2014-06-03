@@ -1,11 +1,10 @@
 var eventId = getParams('eventId');
 
-if (isset(eventId))
+if (isset(eventId)){
 
 	// Get event from DB
 	Session.set('eventId', eventId);
-
-else {
+} else {
 
 	// Create new event
 	Session.set('eventId', generateHash())
@@ -17,8 +16,7 @@ else {
 			location: '',
 			date: '',
 			time: '',
-		},
-		films: []
+		}
 	}
 
 	// Events isn't ready right away
