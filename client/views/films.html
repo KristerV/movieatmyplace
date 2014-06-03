@@ -1,11 +1,23 @@
 <template name="films">
-	<ol>
-		{{#each film}}
-			<li>{{name}}</li>
-		{{/each}}
-	</ol>
-	<form name="addfilm">
-		<input type="text" name="name">
-		<input type="submit" value="Add film">
-	</form>
+	<div class="films">
+			{{#each film}}
+				<div class="film" id="{{id}}">{{> filmoptions}}<div>{{name}}</div></div>
+			{{/each}}
+		<form name="addfilm">
+			<input type="text" name="name">
+			<input type="submit" value="Add film">
+		</form>
+	</div>
+</template>
+
+<template name="filmoptions">
+	<table class="options">
+		<tr>
+			<td style="background-color:green">+</td>
+			<td style="background-color:black">trailer</td>
+			<td style="background-color:black">edit trailer</td>
+			<td style="background-color:black">rename movie</td>
+			<td style="background-color:red">-</td>
+		</tr>
+	</table>
 </template>
