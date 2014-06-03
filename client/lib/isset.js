@@ -8,6 +8,9 @@ isset = function(data) {
 	if (typeof(data) == 'undefined')
 		return false;
 
+	if (data == 'undefined')
+		return false;
+
 	if (data.length == 0)
 		return false;
 
