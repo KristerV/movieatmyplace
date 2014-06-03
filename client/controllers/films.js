@@ -14,7 +14,7 @@ Template.films.events({
 		var formData = getFormData('form[name="addfilm"]');
 		formData['id'] = generateHash();
 
-		Events.upsert({_id: Session.get('eventId')}, {$push: {films: formData}});
+		Events.update({_id: Session.get('eventId')}, {$push: {films: formData}});
 	},
 	'mouseenter .film': function(e, tmpl) {
 		$('.films .options').css("display", "none");
