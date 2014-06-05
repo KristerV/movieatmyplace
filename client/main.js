@@ -4,10 +4,9 @@ createDefaultEvent = function(eventId) {
 	var defaultEvent = {
 		_id: eventId,
 		host: {
-			name: '',
-			location: '',
-			date: '',
-			time: '',
+			Name: '',
+			Location: '',
+			Time: '',
 		}
 	}
 

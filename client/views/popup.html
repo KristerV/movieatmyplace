@@ -1,0 +1,21 @@
+<template name="popup">
+	<div class="popup-background">
+		<div class="popup-content">
+			{{> contentTemplate}}
+		</div>
+	</div>
+</template>
+
+<template name="editData">
+	<form name="editDataForm">
+		<ol>
+			{{#each items}}
+				<tr>
+					<td>{{key}}</td><td> <input type="text" name="{{key}}" value="{{value}}"></td>
+				</tr>
+			{{/each}}
+		</ol>
+		<input type="submit" value="Cancel" name="cancel">
+		<input type="submit" value="Save" name="save">
+	</form>
+</template>

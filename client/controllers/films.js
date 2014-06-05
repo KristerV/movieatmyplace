@@ -12,6 +12,7 @@ Template.films.events({
 		e.preventDefault();
 
 		var formData = getFormData('form[name="addfilm"]');
+		formData['trailer'] = '';
 		formData['id'] = generateHash();
 
 		Events.update({_id: Session.get('eventId')}, {$push: {films: formData}});
@@ -22,5 +23,15 @@ Template.films.events({
 	},
 	'mouseleave .options': function(e, tmpl) {
 		$(e.currentTarget).css("display", "none");
+	}
+});
+
+Template.filmoptions.events({
+	'click .edit-film': function(e, tmpl) {
+		var itemIndex = $('.films .film').index($(e.delegateTarget));
+		var data = Events.findOne({_id: Session.get('eventId')});
+		data = data['films'][itemIndex];
+		data['dataPath'] = ['films', itemIndex];
+		Session.set('editData', data);
 	}
 });

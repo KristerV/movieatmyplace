@@ -1,7 +1,7 @@
 <template name="films">
 	<div class="films">
 			{{#each film}}
-				<div class="film" id="{{id}}">{{> filmoptions}}<div>{{name}}</div></div>
+				<div class="film">{{> filmoptions}}<div>{{name}}</div></div>
 			{{/each}}
 		<form name="addfilm">
 			<input type="text" name="name">
@@ -13,11 +13,10 @@
 <template name="filmoptions">
 	<table class="options">
 		<tr>
-			<td style="background-color:green">+</td>
-			<td style="background-color:black">see trailer</td>
-			<td style="background-color:black">edit trailer</td>
-			<td style="background-color:black">rename movie</td>
-			<td style="background-color:red">-</td>
+			<td class="add-point" style="background-color:green">+</td>
+			<td class="see-trailer" style="background-color:black">trailer</td>
+			<td class="edit-film" style="background-color:black">edit</td>
+			<td class="remove-point" style="background-color:red">-</td>
 		</tr>
 	</table>
 </template>

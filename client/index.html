@@ -7,6 +7,9 @@
 
 <template name="body">
 	<div class="bodycontent">
+		{{#if isPopup}}
+			{{> popup}}
+		{{/if}}
 		{{#if isLoading}}
 			{{> loading}}
 		{{else}}
