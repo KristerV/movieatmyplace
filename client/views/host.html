@@ -1,7 +1,11 @@
 <template name="host">
 	<form name="hostform">
-		{{#each items}}
-			{{key}}: <input type="text" name="{{key}}" value="{{value}}"><br>
-		{{/each}}
+		<ol>
+			{{#each items}}
+				<tr>
+					<td>{{key}}</td><td> <input type="text" name="{{key}}" value="{{value}}"></td>
+				</tr>
+			{{/each}}
+		</ol>
 	</form>
 </template>
