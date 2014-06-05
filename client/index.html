@@ -6,12 +6,14 @@
 </body>
 
 <template name="body">
-	{{#if isLoading}}
-		{{> loading}}
-	{{else}}
-		{{> host}}
-		{{> films}}
-		{{> trailer}}
-		{{> share}}
-	{{/if}}
+	<div class="bodycontent">
+		{{#if isLoading}}
+			{{> loading}}
+		{{else}}
+			{{> host}}
+			{{> films}}
+			{{> trailer}}
+			{{> share}}
+		{{/if}}
+	</div>
 </template>
