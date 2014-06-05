@@ -2,13 +2,16 @@
     <title>Movie Night at My Place</title>
 </head>
 <body>
-	{{> main}}
+	{{> body}}
 </body>
 
-<template name="main">
-	<h1 class="loading">LOADING</h1>
-	{{> host}}
-	{{> films}}
-	{{> trailer}}
-	{{> share}}
+<template name="body">
+	{{#if isLoading}}
+		{{> loading}}
+	{{else}}
+		{{> host}}
+		{{> films}}
+		{{> trailer}}
+		{{> share}}
+	{{/if}}
 </template>

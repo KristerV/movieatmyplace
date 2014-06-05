@@ -1,3 +1,5 @@
+Session.setDefault('isLoading', true);
+
 createDefaultEvent = function(eventId) {
 	var defaultEvent = {
 		_id: eventId,
@@ -18,7 +20,6 @@ createDefaultEvent = function(eventId) {
 
 Meteor.startup(function () {    
 	Meteor.setTimeout(function(){
-		$('.loading').remove();
 		var eventId = getParams('eventId');
 
 		if (!isset(eventId)) {
@@ -29,6 +30,7 @@ Meteor.startup(function () {
 			createDefaultEvent(eventId);
 		}
 
+		Session.set('isLoading', false);
 		Session.set('eventId', eventId);
 	}, 1000);
 });
