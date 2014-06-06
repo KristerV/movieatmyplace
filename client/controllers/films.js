@@ -1,10 +1,18 @@
 Template.films.helpers({
-	film: function() {
-		var Event = Events.findOne({_id: Session.get('eventId')});
-		if (isset(Event)) {
-			return Event['films'];
-		}
+	films: function() {
+		var Event = Events.findOne({_id: Session.get('eventId')}, {sort: {'films.$.votesSum': -1}});
+		if (isset(Event))
+			return sortObject(Event['films']);
 	},
+	vote: function() {
+		var vote = this.votes[localStorage.getItem('userId')];
+		if (vote == 1)
+			return 'like';
+		if (vote == 0)
+			return 'undecided';
+		if (vote == -1)
+			return 'dislike';
+	}
 });
 
 Template.films.events({
@@ -38,18 +46,27 @@ Template.filmoptions.events({
 	'click .add-point, click .remove-point': function(e, tmpl) {
 		var userId = localStorage.getItem("userId");
 		var buttonClass = e.currentTarget.className;
-		var itemIndex = $('.films .film').index($(e.delegateTarget));
+		var itemIndex = $(e.delegateTarget).attr('originalOrder');
+		var Event = Events.findOne({_id: Session.get('eventId')});
+		var votes = Event.films[itemIndex].votes;
+		var userVote = votes[userId];
+		delete votes[userId]; // Delete so it wont disturb when calculating total
+
+		// Figure out what point to give
+		if (buttonClass.indexOf("add-point") > -1)
+			userVote = userVote === 1 ? 0 : 1;
+		else if (buttonClass.indexOf("remove-point") > -1)
+			userVote = userVote === -1 ? 0 : -1;
+
+		// Calculate sum of votes
+		var votesSum = userVote;
+		$.each(votes, function(usr, val) {votesSum += val});
+
+		// Save data
 		var data = {};
-		var value = Events.findOne({_id: Session.get('eventId')}).films[itemIndex].votes[userId];
-		if (buttonClass.indexOf("add-point") > -1) {
-			value = value === 1 ? 0 : 1;
-		} else if (buttonClass.indexOf("remove-point") > -1) {
-			value = value === -1 ? 0 : -1;
-		}
-		data['films.' + itemIndex + '.votes.' + userId] = value;
+		data['films.' + itemIndex + '.votes.' + userId] = userVote;
+		data['films.' + itemIndex + '.votesSum'] = votesSum;
 		Events.update({_id: Session.get('eventId')}, {$set: data});
-		console.log(Events.findOne({_id: Session.get('eventId')}).films[itemIndex].name);
-		console.log(Events.findOne({_id: Session.get('eventId')}).films[itemIndex].votes);
 	},
 
 

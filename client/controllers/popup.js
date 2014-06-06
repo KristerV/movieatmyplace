@@ -9,6 +9,8 @@ Template.editData.helpers({
 		var data = Session.get('editData');
 		delete data['dataPath'];
 		delete data['id'];
+		delete data['votes'];
+		delete data['votesSum'];
 		return getKeyValuePairs(data);
 	}
 });
