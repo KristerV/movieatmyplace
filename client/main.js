@@ -1,4 +1,6 @@
 Session.setDefault('isLoading', true);
+if (!isset(localStorage.getItem("userId")))
+	localStorage.setItem("userId", generateHash());
 
 createDefaultEvent = function(eventId) {
 	var defaultEvent = {
