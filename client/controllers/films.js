@@ -22,6 +22,7 @@ Template.films.events({
 		var formData = getFormData('form[name="addfilm"]');
 		formData['trailer'] = '';
 		formData['votes'] = {};
+		formData['votesSum'] = 0;
 		formData['id'] = generateHash();
 
 		Events.update({_id: Session.get('eId')}, {$push: {films: formData}});
