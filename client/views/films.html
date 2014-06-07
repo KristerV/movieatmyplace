@@ -1,7 +1,7 @@
 <template name="films">
 	<div class="films">
 			{{#each films}}
-				<div class="film {{vote}}" originalOrder="{{originalOrder}}">{{> filmoptions}}<div>{{name}}</div></div>
+				<div class="film {{vote}}" id="{{id}}" originalOrder="{{originalOrder}}">{{> filmoptions}}<div>{{name}}</div></div>
 			{{/each}}
 		<form name="addfilm">
 			<input type="text" name="name">
