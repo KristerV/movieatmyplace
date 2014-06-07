@@ -15,22 +15,26 @@
 			height: 100%;
 			position: absolute;
 		}
+		@opacity: 0.8;
+		@opacitytwo: 0.5;
 		&.like {
-			background-color: green;
+			background-color: rgba(0, 200, 0, @opacitytwo);
+
 		}
 		&.undecided {
 			background-color: grey;
+
 		}
 		&.dislike {
-			background-color: red;
+			background-color: rgba(255, 0, 0, @opacitytwo);
+
 		}
 		&:hover {
 			// outline: black solid 0.1em;
 		}
-		@opacity: 0.8;
         .add-point {background-color: rgba(0, 200, 0, @opacity); }
-        .see-trailer {background-color: rgba(0, 50, 0, @opacity); }
-        .edit-film {background-color: rgba(50, 0, 0, @opacity); }
+        .see-trailer {background-color: rgba(0, 0, 0, @opacity); }
+        .edit-film {background-color: rgba(0, 0, 0, @opacity); }
 		.remove-point {background-color: rgba(255, 0, 0, @opacity); }
 		.votesSum {
 			width: 2em;

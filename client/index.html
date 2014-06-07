@@ -13,10 +13,24 @@
 		{{#if isLoading}}
 			{{> loading}}
 		{{else}}
-			{{> host}}
-			{{> films}}
-			{{> trailer}}
-			{{> share}}
+			<div class="section">
+				{{> intro}}
+			</div>
+			<div class="section">
+				<h3>1. Give details</h3>
+				{{> host}}
+			</div>
+			<div class="section">
+				<h3>2. Vote for movies</h3>
+				{{> films}}
+			</div>
+			<div class="section">
+				<h3>3. Share event</h3>
+				{{> share}}
+			</div>
+			<div class="section">
+				{{> outro}}
+			</div>
 		{{/if}}
 	</div>
 </template>

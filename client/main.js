@@ -10,7 +10,7 @@ createDefaultEvent = function(eventId) {
 	Events.insert({
 		_id: eventId,
 		host: {
-			Name: '',
+			Host: '',
 			Location: '',
 			Time: '',
 		}
