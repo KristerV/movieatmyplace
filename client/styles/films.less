@@ -24,11 +24,20 @@
 		&.dislike {
 			background-color: red;
 		}
+		&:hover {
+			// outline: black solid 0.1em;
+		}
+		@opacity: 0.8;
+        .add-point {background-color: rgba(0, 200, 0, @opacity); }
+        .see-trailer {background-color: rgba(0, 50, 0, @opacity); }
+        .edit-film {background-color: rgba(50, 0, 0, @opacity); }
+		.remove-point {background-color: rgba(255, 0, 0, @opacity); }
 		.votesSum {
-			color: black;
-			position: absolute;
-			top:0;
-			right: -1em;
+			width: 2em;
+			background-color: rgba(0,0,0,@opacity);
+			// position: absolute;
+			// top:0;
+			// left: 50%;
 		}
 	}
 }
