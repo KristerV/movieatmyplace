@@ -1,3 +1,7 @@
+var url = getDomain();
+if (url[0].indexOf("movieat.mp") > -1)
+	window.location.replace("http://movieatmyplace.com/?" + url[1]);
+
 Session.setDefault('isLoading', true);
 if (!isset(localStorage.getItem("userId")))
 	localStorage.setItem("userId", generateHash());

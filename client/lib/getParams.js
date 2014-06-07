@@ -1,6 +1,11 @@
 getParams = function(param)
 {
 	var query = window.location.search.substring(1);
+
+	// Make sure param actually exists
+	if (isset(param) && query.indexOf("param") === -1)
+		return false;
+
 	var vars = query.split("&");
 	var array = {};
 	for (var i=0;i<vars.length;i++) {
