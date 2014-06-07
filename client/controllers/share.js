@@ -1,6 +1,6 @@
 Template.share.helpers({
 	sharelink: function() {
-		var link = document.URL.split('?')[0] + '?eventId=' + Session.get('eventId');
+		var link = 'movieat.mp/?eId=' + Session.get('eId');
 		return link;
 	}
 });

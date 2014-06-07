@@ -19,7 +19,7 @@ Meteor.startup(function () {
 	var interval = Meteor.setInterval(function(){
 		count++;
 		if (typeof Events != 'undefined' && isset(Events.findOne())) {
-			var eventId = getParams('eventId');
+			var eventId = getParams('eId');
 
 			if (!isset(eventId)) {
 				var eventId = generateHash();
@@ -30,7 +30,7 @@ Meteor.startup(function () {
 			}
 
 			Session.set('isLoading', false);
-			Session.set('eventId', eventId);
+			Session.set('eId', eventId);
 			Meteor.clearInterval(interval);
 		}
 	}, 50);

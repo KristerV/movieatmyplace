@@ -24,11 +24,11 @@ Template.editData.events({
 			var formData = getFormData('form[name="editDataForm"]');
 			var save = {};
 			save[dataPath.join('.')] = formData;
-			Events.update({_id: Session.get('eventId')}, {$set: save});
+			Events.update({_id: Session.get('eId')}, {$set: save});
 		} else if (buttonPressed == 'delete') {
 			var item = {};
 			item[dataPath[0]] = {id: dataId};
-			Events.update({_id: Session.get('eventId')}, {$pull: item});
+			Events.update({_id: Session.get('eId')}, {$pull: item});
 		}
 
 		Session.set('editData', null);

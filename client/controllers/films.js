@@ -1,6 +1,6 @@
 Template.films.helpers({
 	films: function() {
-		var Event = Events.findOne({_id: Session.get('eventId')}, {sort: {'films.$.votesSum': -1}});
+		var Event = Events.findOne({_id: Session.get('eId')}, {sort: {'films.$.votesSum': -1}});
 		if (isset(Event))
 			return sortObject(Event['films']);
 	},
@@ -24,7 +24,7 @@ Template.films.events({
 		formData['votes'] = {};
 		formData['id'] = generateHash();
 
-		Events.update({_id: Session.get('eventId')}, {$push: {films: formData}});
+		Events.update({_id: Session.get('eId')}, {$push: {films: formData}});
 	},
 	'mouseenter .film': function(e, tmpl) {
 		$('.films .options').css("display", "none");
@@ -38,7 +38,7 @@ Template.films.events({
 Template.filmoptions.events({
 	'click .edit-film': function(e, tmpl) {
 		var itemIndex = $('.films .film').index($(e.delegateTarget));
-		var data = Events.findOne({_id: Session.get('eventId')});
+		var data = Events.findOne({_id: Session.get('eId')});
 		data = data['films'][itemIndex];
 		data['dataPath'] = ['films', itemIndex];
 		Session.set('editData', data);
@@ -47,7 +47,7 @@ Template.filmoptions.events({
 		var userId = localStorage.getItem("userId");
 		var buttonClass = e.currentTarget.className;
 		var itemIndex = $(e.delegateTarget).attr('originalOrder');
-		var Event = Events.findOne({_id: Session.get('eventId')});
+		var Event = Events.findOne({_id: Session.get('eId')});
 		var votes = Event.films[itemIndex].votes;
 		var userVote = votes[userId];
 		delete votes[userId]; // Delete so it wont disturb when calculating total
@@ -66,7 +66,7 @@ Template.filmoptions.events({
 		var data = {};
 		data['films.' + itemIndex + '.votes.' + userId] = userVote;
 		data['films.' + itemIndex + '.votesSum'] = votesSum;
-		Events.update({_id: Session.get('eventId')}, {$set: data});
+		Events.update({_id: Session.get('eId')}, {$set: data});
 	},
 
 
