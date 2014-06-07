@@ -3,7 +3,7 @@ getParams = function(param)
 	var query = window.location.search.substring(1);
 
 	// Make sure param actually exists
-	if (isset(param) && query.indexOf("param") === -1)
+	if (isset(param) && query.indexOf(param) === -1)
 		return false;
 
 	var vars = query.split("&");
