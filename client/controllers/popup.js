@@ -4,6 +4,12 @@ Template.popup.helpers({
 	},
 });
 
+Template.popup.events({
+	'click .popup-background': function(e, tmpl) {
+		Session.set('editData', null);
+	}
+});
+
 Template.editData.helpers({
 	items: function() {
 		var data = Session.get('editData');
@@ -51,5 +57,5 @@ Template.editData.events({
 		}
 
 		Session.set('editData', null);
-	}
+	},
 });
