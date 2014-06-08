@@ -15,9 +15,9 @@
 		{{else}}
 			<div class="section">
 				{{#if youtubeImage}}
-					<img class="coverImage" src="{{youtubeImage}}" style="background-image: url('http://img.youtube.com/vi/QJ-TwPHs-Ss/0.jpg')">
+					<img class="coverImage" src="{{youtubeImage}}">
 				{{/if}}
-				{{> intro}}
+				<h2 style="{{#if youtubeImage}}{{else}}color: black;text-shadow:none;{{/if}}">Let your friends choose the movie tonight</h2>
 			</div>
 			<div class="section">
 				<h3>1. Give details</h3>

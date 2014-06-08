@@ -1,10 +1,16 @@
 Template.films.helpers({
 	films: function() {
 		var Event = Events.findOne({_id: Session.get('eId')}, {sort: {'films.$.votesSum': -1}});
-		if (isset(Event))
-			return sortObject(Event['films']);
+		if (isset(Event)) {
+			var ordered = sortObject(Event['films']);
+			if (!isset(ordered))
+				return false;
+			Session.set("topTrailer", ordered[0].trailer);
+			return ordered;
+		}
 	},
 	vote: function() {
+		console.log(this);
 		var vote = this.votes[localStorage.getItem('userId')];
 		if (vote == 1)
 			return 'like';
