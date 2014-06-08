@@ -13,5 +13,8 @@ Template.body.helpers({
 		var vid = ( results === null ) ? url : results[1];
 		var image = "http://img.youtube.com/vi/"+vid+"/0.jpg";
 		return image;
+	},
+	youtubePlayerReady: function() {
+		return Session.get('youtubePlayer') ? true : false;
 	}
 });

@@ -5,12 +5,11 @@ Template.films.helpers({
 			var ordered = sortObject(Event['films']);
 			if (!isset(ordered))
 				return false;
-			Session.set("topTrailer", ordered[0].trailer);
+			Session.set("topTrailer", ordered[0].youtube);
 			return ordered;
 		}
 	},
 	vote: function() {
-		console.log(this);
 		var vote = this.votes[localStorage.getItem('userId')];
 		if (vote == 1)
 			return 'like';
@@ -26,7 +25,7 @@ Template.films.events({
 		e.preventDefault();
 
 		var formData = getFormData('form[name="addfilm"]');
-		formData['trailer'] = '';
+		formData['youtube'] = '';
 		formData['votes'] = {};
 		formData['votesSum'] = 0;
 		formData['id'] = generateHash();
@@ -44,7 +43,7 @@ Template.films.events({
 
 Template.filmoptions.events({
 	'click .edit-film': function(e, tmpl) {
-		var itemIndex = $('.films .film').index($(e.delegateTarget));
+		var itemIndex = $(e.delegateTarget).attr('originalOrder');
 		var data = Events.findOne({_id: Session.get('eId')});
 		data = data['films'][itemIndex];
 		data['dataPath'] = ['films', itemIndex];
@@ -75,6 +74,20 @@ Template.filmoptions.events({
 		data['films.' + itemIndex + '.votesSum'] = votesSum;
 		Events.update({_id: Session.get('eId')}, {$set: data});
 	},
+	'click .see-trailer': function(e, tmpl) {
+		var userId = localStorage.getItem("userId");
+		var buttonClass = e.currentTarget.className;
+		var itemIndex = $(e.delegateTarget).attr('originalOrder');
+		var Event = Events.findOne({_id: Session.get('eId')});
+		var youtubeLink = Event.films[itemIndex].youtube;
+		if (!isset(youtubeLink)) {
+			data = Event['films'][itemIndex];
+			data['dataPath'] = ['films', itemIndex];
+			Session.set('editData', data);
+		} else {
+			Session.set('youtubePlayer', youtubeLink);
+		}
+	}
 
 
 });

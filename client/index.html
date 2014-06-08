@@ -13,27 +13,33 @@
 		{{#if isLoading}}
 			{{> loading}}
 		{{else}}
-			<div class="section">
-				{{#if youtubeImage}}
-					<img class="coverImage" src="{{youtubeImage}}">
-				{{/if}}
-				<h2 style="{{#if youtubeImage}}{{else}}color: black;text-shadow:none;{{/if}}">Let your friends choose the movie tonight</h2>
+			<div class="left-container" style="{{#if youtubePlayerReady}}width:50%{{/if}}">
+				<div class="section">
+					{{#if youtubeImage}}
+						<img class="coverImage" src="{{youtubeImage}}">
+					{{/if}}
+					<h2 style="{{#if youtubeImage}}{{else}}color: black;text-shadow:none;{{/if}}">Let your friends choose the movie tonight</h2>
+				</div>
+				<div class="section">
+					<h3>1. Give details</h3>
+					{{> host}}
+				</div>
+				<div class="section">
+					<h3>2. Vote for movies</h3>
+					{{> films}}
+				</div>
+				<div class="section">
+					<h3>3. Invite friends</h3>
+					{{> share}}
+				</div>
+				<div class="section">
+					{{> outro}}
+				</div>
 			</div>
-			<div class="section">
-				<h3>1. Give details</h3>
-				{{> host}}
-			</div>
-			<div class="section">
-				<h3>2. Vote for movies</h3>
-				{{> films}}
-			</div>
-			<div class="section">
-				<h3>3. Invite friends</h3>
-				{{> share}}
-			</div>
-			<div class="section">
-				{{> outro}}
-			</div>
+		{{/if}}
+
+		{{#if youtubePlayerReady}}
+			{{> trailer}}
 		{{/if}}
 	</div>
 </template>

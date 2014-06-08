@@ -6,7 +6,8 @@ Template.popup.helpers({
 
 Template.popup.events({
 	'click .popup-background': function(e, tmpl) {
-		Session.set('editData', null);
+		if (e.target.className.indexOf('middle') !== -1)
+			Session.set('editData', null);
 	}
 });
 
