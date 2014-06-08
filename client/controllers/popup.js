@@ -56,6 +56,7 @@ Template.editData.events({
 			item[dataPath[0]] = {id: dataId};
 			Events.update({_id: Session.get('eId')}, {$pull: item});
 			Session.set('youtubePlayer', null);
+			Session.set('topTrailer', null);
 		}
 
 		Session.set('editData', null);
