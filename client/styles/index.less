@@ -34,10 +34,31 @@ input {
 .section {
     padding-top: 1em;
     padding-bottom: 1em;
+    .coverImage {
+        width: 110%;
+        -webkit-filter: blur(7px);
+        -moz-filter: blur(7px);
+        -o-filter: blur(7px);
+        -ms-filter: blur(7px);
+        filter: blur(7px);
+        position: absolute;
+        top: -50%;
+        left: -5%;
+        z-index: -1;
+    }
     &:nth-child(odd) {
         background-color: #f5f5f5;
         -webkit-box-shadow:inset 0 0 10px 0 rgba(0,0,0,0.1);
         box-shadow:inset 0 0 10px 0 rgba(0,0,0,0.1);
+    }
+    &:nth-child(even) {
+        background-color: #ffffff;
+    }
+    &:first-child {
+        overflow: hidden;
+        background-color: transparent;
+        color: white;
+        text-shadow: 0 0 10px #000;
     }
     &:last-child {
         background-color: #2d333b;

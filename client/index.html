@@ -14,6 +14,9 @@
 			{{> loading}}
 		{{else}}
 			<div class="section">
+				{{#if youtubeImage}}
+					<img class="coverImage" src="{{youtubeImage}}" style="background-image: url('http://img.youtube.com/vi/QJ-TwPHs-Ss/0.jpg')">
+				{{/if}}
 				{{> intro}}
 			</div>
 			<div class="section">
