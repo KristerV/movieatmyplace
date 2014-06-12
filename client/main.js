@@ -5,7 +5,7 @@ if (url[0].indexOf("movieat.mp") > -1)
 
 // Hide content while still loading site
 Session.setDefault('isLoading', true);
-Session.setDefault('filmSearch', false);
+Session.setDefault('movieSearch', false);
 
 // Generate userId if none
 if (!isset(localStorage.getItem("userId")))

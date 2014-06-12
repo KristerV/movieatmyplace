@@ -9,8 +9,8 @@ Template.host.helpers({
 Template.host.events({
 	'blur input': function(e, tmpl) {
 		e.preventDefault();
-		var films = Events.findOne({_id: Session.get('eId')})['films'];
+		var movies = Events.findOne({_id: Session.get('eId')})['movies'];
 		var formData = getFormData('form[name="hostform"]');
-		Events.update({_id: Session.get('eId')}, {host: formData, films: films});
+		Events.update({_id: Session.get('eId')}, {host: formData, movies: movies});
 	},
 });

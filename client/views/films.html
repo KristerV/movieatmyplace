@@ -1,11 +1,11 @@
-<template name="films">
-	<div class="films">
-			{{#each films}}
-				<div class="film {{vote}}" id="{{id}}" originalOrder="{{originalOrder}}">{{> filmoptions}}<div>{{name}}</div></div>
+<template name="movies">
+	<div class="movies">
+			{{#each movies}}
+				<div class="movie {{vote}}" id="{{id}}" originalOrder="{{originalOrder}}">{{> movieoptions}}<div>{{title}}</div></div>
 			{{/each}}
-		<form name="addfilm" class="addfilm">
-			<input type="text" name="addfilm">
-			<input type="submit" value="Add film">
+		<form name="addmovie" class="addmovie">
+			<input type="text" name="title">
+			<input type="submit" value="Add movie">
 			<div class="autocomplete">
 				<ol>
 					{{#each autocomplete}}
@@ -24,13 +24,13 @@
 	</div>
 </template>
 
-<template name="filmoptions">
+<template name="movieoptions">
 	<table class="options">
 		<tr>
 			<td class="add-point">+</td>
 			<td class="see-trailer">trailer</td>
 			<td class="votesSum">{{votesSum}}</td>
-			<td class="edit-film">edit</td>
+			<td class="edit-movie">edit</td>
 			<td class="remove-point">-</td>
 		</tr>
 	</table>
