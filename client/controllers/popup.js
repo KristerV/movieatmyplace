@@ -30,7 +30,7 @@ Template.editData.events({
 		var dataId = Session.get('editData')['id'];
 
 		// Different button reactions
-		if (buttonPressed == 'save') {
+		if (buttonPressed == 'save' || !isset(buttonPressed)) {
 
 			// Get old data from DB
 			var Event = Events.findOne({_id: Session.get('eId')});
