@@ -3,7 +3,14 @@ Template.addmovie.helpers({
 	// Get autocomplete contents
 	autocomplete: function() {
 		return Session.get('movieSearch');
-	}
+	},
+	top: function() {
+		var text = $('.addmovie input[type=text]');
+		var textTop = $('.addmovie input[type=text]').offset().top;
+		var textHeight = $('.addmovie input[type=text]').height();
+		var top = textTop + textHeight;
+		return top;
+	},
 });
 
 Template.addmovie.events({
@@ -27,8 +34,7 @@ Template.addmovie.events({
 
 		// Clear autocomplete
 		$('.addmovie input[name="title"]').val('');
-		Meteor.clearTimeout(Session.get("typingTimer"));
-		Session.set('movieSearch', false);
+		clearAutocomplete();
 	},
 
 	// Search for movies when typing
@@ -59,8 +65,7 @@ Template.addmovie.events({
 		else {
 			// Don't search for one letter
 			if (e.target.value.length < 2) {
-				Meteor.clearTimeout(Session.get("typingTimer"));
-				Session.set('movieSearch', false);
+				clearAutocomplete();
 				return false;
 			}
 
@@ -74,6 +79,11 @@ Template.addmovie.events({
 			Session.set("typingTimer", typingTimer);
 		}
 	},
+
+	// Clear autocomplete on blur
+	'blur input[name=title]': function(e, tmpl) {
+		clearAutocomplete();
+	}
 });
 
 
@@ -150,4 +160,9 @@ var addRottenDetailsToMovie = function(movieId, details) {
 	var data = {};
 	data['movies.' + movieIndex] = rottenData;
 	Events.update({_id: Session.get('eId')}, {$set: data});
+}
+
+var clearAutocomplete = function() {
+	Meteor.clearTimeout(Session.get("typingTimer"));
+	Session.set('movieSearch', false);
 }
