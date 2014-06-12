@@ -1,0 +1,24 @@
+.addmovie {
+	margin: 0 auto;
+	max-width: 900px;
+	.autocomplete {
+		border: rgba(0,0,0,0.3) solid 1px;
+	}
+	input[type=radio] {
+		display: none;
+		width: 0;
+		height:0;
+		margin: 0;
+		padding: 0;
+		line-height: 0;
+	}
+	input[type=radio] + label {
+		width: 100%;
+	    display:inline-block;
+	    background-color: white;
+	}
+	input[type=radio]:checked + label,
+	input[type=radio] + label:hover {
+	    background-color: rgba(0,0,0,0.1);
+	}
+}

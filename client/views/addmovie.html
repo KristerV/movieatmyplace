@@ -1,0 +1,16 @@
+<template name="addmovie">
+	<form name="addmovie" class="addmovie">
+		<input type="text" name="title">
+		<input type="submit" value="Add movie">
+		<div class="autocomplete">
+				{{#each autocomplete}}
+					{{#if Error}}
+						<p>{{Error}}</p>
+					{{else}}
+							<input type="radio" name="autocomplete" id="{{id}}" value="{{id}}">
+							<label for="{{id}}">{{title}} ({{year}})</label>
+					{{/if}}
+				{{/each}}
+		</div>
+	</form>
+</template>

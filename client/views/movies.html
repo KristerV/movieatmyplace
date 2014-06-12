@@ -1,0 +1,19 @@
+<template name="movies">
+	<div class="movies">
+		{{#each movies}}
+			<div class="movie {{vote}}" id="{{id}}" originalOrder="{{originalOrder}}">{{> movieoptions}}<div>{{title}}</div></div>
+		{{/each}}
+	</div>
+</template>
+
+<template name="movieoptions">
+	<table class="options">
+		<tr>
+			<td class="add-point">+</td>
+			<td class="see-trailer">trailer</td>
+			<td class="votesSum">{{votesSum}}</td>
+			<td class="edit-movie">edit</td>
+			<td class="remove-point">-</td>
+		</tr>
+	</table>
+</template>
