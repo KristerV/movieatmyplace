@@ -104,8 +104,6 @@ Template.movieoptions.events({
 			Session.set('youtubePlayer', youtubeLink);
 		}
 	}
-
-
 });
 
 findMovieIndexInCollectionById = function(movieId) {
