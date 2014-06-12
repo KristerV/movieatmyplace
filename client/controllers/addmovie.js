@@ -34,22 +34,46 @@ Template.addmovie.events({
 	// Search for movies when typing
 	'keyup .addmovie input[name=title]': function(e, tmpl) {
 
-		// Don't search for one letter
-		if (e.target.value.length < 2) {
-			Meteor.clearTimeout(Session.get("typingTimer"));
-			Session.set('movieSearch', false);
-			return false;
-		}
+		// User is navigating autocomplete list
+		if ([38, 40].indexOf(e.which) > -1) {
 
-		// Only search when typing stopped, rotten has API limits:
-		// 5 searches a second and 10'000 searches a day
-		Meteor.clearTimeout(Session.get("typingTimer"));
-		var typingTimer = Meteor.setTimeout(function(){
-			$('input[name=autocomplete]').attr('checked',false);
-			searchRotten(e.target.value);
-		}, 500);
-		Session.set("typingTimer", typingTimer);
-	}
+			var checked = $('input[type=radio]:checked');
+			checked.prop('checked', false);
+
+			if (e.which == 38) { // uparrow
+
+				if (checked.length == 0)
+					$('input[type=radio]').last().prop('checked', true);
+				else
+					checked.prev().prev().prop('checked', true);
+
+			} else if (e.which == 40) { // downarrow
+
+				if (checked.length == 0)
+					$('input[type=radio]:first-child').prop('checked', true);
+				else
+					checked.next().next().prop('checked', true);
+			}
+		}
+		// User is just typing
+		else {
+			// Don't search for one letter
+			if (e.target.value.length < 2) {
+				Meteor.clearTimeout(Session.get("typingTimer"));
+				Session.set('movieSearch', false);
+				return false;
+			}
+
+			// Only search when typing stopped, rotten has API limits:
+			// 5 searches a second and 10'000 searches a day
+			Meteor.clearTimeout(Session.get("typingTimer"));
+			var typingTimer = Meteor.setTimeout(function(){
+				$('input[name=autocomplete]').prop('checked',false);
+				searchRotten(e.target.value);
+			}, 500);
+			Session.set("typingTimer", typingTimer);
+		}
+	},
 });
 
 

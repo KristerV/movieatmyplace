@@ -2,6 +2,7 @@
 	<form name="addmovie" class="addmovie">
 		<input type="text" name="title">
 		<input type="submit" value="Add movie">
+		{{#if autocomplete}}
 		<div class="autocomplete">
 				{{#each autocomplete}}
 					{{#if Error}}
@@ -12,5 +13,6 @@
 					{{/if}}
 				{{/each}}
 		</div>
+		{{/if}}
 	</form>
 </template>

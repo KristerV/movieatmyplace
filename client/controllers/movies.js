@@ -49,6 +49,17 @@ Template.movieoptions.events({
 		Session.set('editData', data);
 	},
 
+	// Edit movie
+	'click .remove-movie': function(e, tmpl) {
+		// var dataPath = Session.get('editData')['dataPath'];
+		// var dataId = Session.get('editData')['id'];
+		var item = {};
+		var movieId = e.delegateTarget.id;
+		var movieIndex = findMovieIndexInCollectionById(movieId);
+		item['movies'] = {id: movieId};
+		Events.update({_id: Session.get('eId')}, {$pull: item});
+	},
+
 	// Add point to movie
 	'click .add-point, click .remove-point': function(e, tmpl) {
 
