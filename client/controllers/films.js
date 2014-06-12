@@ -1,3 +1,5 @@
+
+
 Template.films.helpers({
 	films: function() {
 		var Event = Events.findOne({_id: Session.get('eId')}, {sort: {'films.$.votesSum': -1}});
@@ -17,6 +19,9 @@ Template.films.helpers({
 			return 'undecided';
 		if (vote == -1)
 			return 'dislike';
+	},
+	autocomplete: function() {
+		return Session.get('filmSearch');
 	}
 });
 
@@ -38,6 +43,23 @@ Template.films.events({
 	},
 	'mouseleave .options': function(e, tmpl) {
 		$(e.currentTarget).css("display", "none");
+	},
+	'keyup input[name=addfilm]': function(e, tmpl) {
+
+		// Don't search for one letter
+		if (e.target.value.length < 2) {
+			Meteor.clearTimeout(Session.get("typingTimer"));
+			Session.set('filmSearch', false);
+			return false;
+		}
+
+		// Only search when typing stopped, rotten has API limits:
+		// 5 searches a second and 10'000 searches a day
+		Meteor.clearTimeout(Session.get("typingTimer"));
+		var typingTimer = Meteor.setTimeout(function(){
+			searchRotten(e.target.value);
+		}, 500);
+		Session.set("typingTimer", typingTimer);
 	}
 });
 
@@ -91,3 +113,20 @@ Template.filmoptions.events({
 
 
 });
+
+var searchRotten = function(term) {
+	var link = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?callback=?";
+	var parameters = {
+		q: term,
+		page_limit: 10,
+		page: 1,
+		apikey: 'h7r36fsnbz7bzb87pz86tyh5',
+	}
+	$.getJSON(link, parameters, function(data){
+		Session.set('filmSearch', data.movies);
+	})
+	.fail(function( jqxhr, textStatus, error ) {
+			var err = textStatus + ", " + error;
+			console.log( "Request Failed: " + err );
+	});
+}

@@ -3,9 +3,23 @@
 			{{#each films}}
 				<div class="film {{vote}}" id="{{id}}" originalOrder="{{originalOrder}}">{{> filmoptions}}<div>{{name}}</div></div>
 			{{/each}}
-		<form name="addfilm">
-			<input type="text" name="name">
+		<form name="addfilm" class="addfilm">
+			<input type="text" name="addfilm">
 			<input type="submit" value="Add film">
+			<div class="autocomplete">
+				<ol>
+					{{#each autocomplete}}
+						{{#if Error}}
+							<p>{{Error}}</p>
+						{{else}}
+							<li>
+								<input type="radio" name="autocomplete" id="{{id}}" value="{{id}}">
+								<label for="{{id}}">{{title}} ({{year}})</label>
+							</li>
+						{{/if}}
+					{{/each}}
+				</ol>
+			</div>
 		</form>
 	</div>
 </template>
