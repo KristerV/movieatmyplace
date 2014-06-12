@@ -26,7 +26,7 @@ Template.movies.helpers({
 });
 
 Template.movies.events({
-	'submit form': function(e, tmpl) {
+	'submit form, click .addmovie input[type=radio]': function(e, tmpl) {
 		e.preventDefault();
 
 		var formData = getFormData('form[name="addmovie"]');
@@ -36,10 +36,8 @@ Template.movies.events({
 		formData['id'] = generateHash();
 
 		// Add details from Rotten Tomatoes
-		if (isset(formData['autocomplete'])) {
-			formData['title'] = formData['rottenTitle'];
+		if (isset(formData['autocomplete']))
 			getRottenMovieDetails(formData['id'], formData['autocomplete']);
-		}
 
 		// Save
 		Events.update({_id: Session.get('eId')}, {$push: {movies: formData}});
@@ -85,6 +83,8 @@ Template.movieoptions.events({
 		Session.set('editData', data);
 	},
 	'click .add-point, click .remove-point': function(e, tmpl) {
+
+		// Get basic info
 		var userId = localStorage.getItem("userId");
 		var buttonClass = e.currentTarget.className;
 		var itemIndex = $(e.delegateTarget).attr('originalOrder');
@@ -192,12 +192,13 @@ var addRottenDetailsToMovie = function(movieId, details) {
 	var movieIndex = findMovieIndexInCollectionById(movieId);
 	var movie = Events.findOne({_id: Session.get('eId')}).movies[movieIndex];
 	$.each(movie, function(key, value) {
-		rottenData[key] = value;
+		if (!isset(rottenData[key]))
+			rottenData[key] = value;
 	});
 
 	// Save
-	var data = {movies: []};
-	data['movies'][movieIndex] = rottenData;
+	var data = {};
+	data['movies.' + movieIndex] = rottenData;
 	Events.update({_id: Session.get('eId')}, {$set: data});
 }
 
