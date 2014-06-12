@@ -14,10 +14,7 @@ Template.popup.events({
 Template.editData.helpers({
 	items: function() {
 		var data = Session.get('editData');
-		delete data['dataPath'];
-		delete data['id'];
-		delete data['votes'];
-		delete data['votesSum'];
+		data = {youtube: data['youtube']};
 		return getKeyValuePairs(data);
 	}
 });
