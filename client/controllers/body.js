@@ -14,5 +14,11 @@ Template.body.helpers({
 	},
 	youtubePlayerReady: function() {
 		return Session.get('youtubePlayer') ? true : false;
+	},
+	anyMovies: function() {
+		var Event = Events.findOne({_id: Session.get('eId')}, {sort: {'movies.$.votesSum': -1}});
+		if (isset(Event)) {
+			return isset(Event['movies']) ? true : false;
+		}
 	}
 });

@@ -26,7 +26,12 @@
 				</div>
 				<div class="section">
 					<h3>2. Vote for movies</h3>
-					{{> movies}}
+					{{#if anyMovies}}
+						{{> movies}}
+					{{else}}
+						<p class="no-movies">No movies entered yet</p>
+					{{/if}}
+					{{> addmovie}}
 				</div>
 				<div class="section">
 					<h3>3. Invite friends</h3>
