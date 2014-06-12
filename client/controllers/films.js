@@ -1,6 +1,8 @@
 
 
 Template.movies.helpers({
+
+	// Get movies from database
 	movies: function() {
 		var Event = Events.findOne({_id: Session.get('eId')}, {sort: {'movies.$.votesSum': -1}});
 		if (isset(Event)) {
@@ -11,6 +13,8 @@ Template.movies.helpers({
 			return ordered;
 		}
 	},
+
+	// Get amount of votes
 	vote: function() {
 		var vote = this.votes[localStorage.getItem('userId')];
 		if (vote == 1)
@@ -20,12 +24,16 @@ Template.movies.helpers({
 		if (vote == -1)
 			return 'dislike';
 	},
+
+	// Get autocomplete contents
 	autocomplete: function() {
 		return Session.get('movieSearch');
 	}
 });
 
 Template.movies.events({
+
+	// Add film form submit
 	'submit form, click .addmovie input[type=radio]': function(e, tmpl) {
 		e.preventDefault();
 
@@ -47,13 +55,19 @@ Template.movies.events({
 		Meteor.clearTimeout(Session.get("typingTimer"));
 		Session.set('movieSearch', false);
 	},
+
+	// Display film options
 	'mouseenter .movie': function(e, tmpl) {
 		$('.movies .options').css("display", "none");
 		$(e.currentTarget.firstElementChild).css("display", "table");
 	},
+
+	// Undisplay film options
 	'mouseleave .options': function(e, tmpl) {
 		$(e.currentTarget).css("display", "none");
 	},
+
+	// Search for movies when typing
 	'keyup .addmovie input[name=title]': function(e, tmpl) {
 
 		// Don't search for one letter
@@ -75,6 +89,8 @@ Template.movies.events({
 });
 
 Template.movieoptions.events({
+
+	// Edit movie
 	'click .edit-movie': function(e, tmpl) {
 		var itemIndex = $(e.delegateTarget).attr('originalOrder');
 		var data = Events.findOne({_id: Session.get('eId')});
@@ -82,6 +98,8 @@ Template.movieoptions.events({
 		data['dataPath'] = ['movies', itemIndex];
 		Session.set('editData', data);
 	},
+
+	// Add point to movie
 	'click .add-point, click .remove-point': function(e, tmpl) {
 
 		// Get basic info
@@ -109,6 +127,8 @@ Template.movieoptions.events({
 		data['movies.' + itemIndex + '.votesSum'] = votesSum;
 		Events.update({_id: Session.get('eId')}, {$set: data});
 	},
+
+	// See the trailer of movie
 	'click .see-trailer': function(e, tmpl) {
 		var userId = localStorage.getItem("userId");
 		var buttonClass = e.currentTarget.className;
