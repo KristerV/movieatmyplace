@@ -182,16 +182,16 @@ var addRottenDetailsToMovie = function(movieId, details) {
 
 	// Format information
 	rottenData = {
-		rottenId: details.id,
-		imdbId: details.alternate_ids.imdb,
-		title: details.title,
-		year: details.year,
-		studio: details.studio,
-		thumbnail: details.posters.thumbnail,
-		audienceRating: details.ratings.audience_score,
-		criticRating: details.ratings.critics_score,
-		duration: details.runtime,
-		synopsis: details.synopsis,
+		rottenId:       isset(details['id'])            ? details['id']                        : null,
+		imdbId:         isset(details['alternate_ids']) ? details['alternate_ids']['imdb']     : null,
+		title:          isset(details['title'])         ? details['title']                     : null,
+		year:           isset(details['year'])          ? details['year']                      : null,
+		studio:         isset(details['studio'])        ? details['studio']                    : null,
+		thumbnail:      isset(details['posters'])       ? details['posters']['thumbnail']      : null,
+		audienceRating: isset(details['ratings'])       ? details['ratings']['audience_score'] : null,
+		criticRating:   isset(details['ratings'])       ? details['ratings']['critics_score']  : null,
+		duration:       isset(details['runtime'])       ? details['runtime']                   : null,
+		synopsis:       isset(details['synopsis'])      ? details['synopsis']                  : null,
 	};
 
 	var actors = [];
