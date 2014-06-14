@@ -82,7 +82,10 @@ Template.addmovie.events({
 
 	// Clear autocomplete on blur
 	'blur input[name=title]': function(e, tmpl) {
-		clearAutocomplete();
+		// After item has been added, clear autocomplete
+		Meteor.setTimeout(function(){
+			clearAutocomplete();
+		}, 100);
 	}
 });
 
