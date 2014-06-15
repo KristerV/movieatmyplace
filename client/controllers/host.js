@@ -1,6 +1,5 @@
 Template.host.helpers({
 	items: function() {
-		console.log(Session.get('eId'));
 		var Event = Events.findOne({_id: Session.get('eId')});
 		if (isset(Event) && isset(Event['host']))
 			return getKeyValuePairs(Event['host']);
