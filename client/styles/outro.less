@@ -1,22 +1,25 @@
 .outro {
-    background-color: #2d333b;
     color: #828e9e;
     font-size: 0.7em;
-    width: 100%;
-    padding-top: 2em;
+    padding-top: 1em;
     padding-bottom: 1em;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
     line-height: 1em;
-    div {
-    	max-width: 600px;
+    a:link, a:visited, a:active, .underline{
+        color: #828e9e;
+        border-bottom: 1px solid #828e9e;
+        text-decoration: none;
     }
-    a:link, a:visited, a:active{
-    	color: #828e9e;
-    	border-bottom: 1px solid #828e9e;
-    	text-decoration: none;
+    #outro-hidden {
+        display: none;
+        width: 100%;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        div {
+            max-width: 600px;
+        }
     }
-    
-
-}
+    .flex {display: flex;}
+    #outro-mini {
+        // display: block;
+    }
+ }
