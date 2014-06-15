@@ -21,16 +21,16 @@
 						<img class="coverImage" src="{{youtubeImage}}">
 					{{/if}}
 					{{#if isEditMode}}
-						<h2>Which of your preferred movies do your friends want to see?</h2>
+						<h2>Invite friends over for a movie,<br>let them choose from your selection</h2>
 					{{else}}
-						<h2>{{_host}} has invited you to<br>see a movie at {{location}}, {{time}}.</h2>
+						<h2>{{name}} has invited you to<br>see a movie at {{location}}, {{time}}.</h2>
 					{{/if}}
 				</div>
 
 				<!-- Event details section -->
 				{{#if isEditMode}}
 					<div class="section">
-						<h3>Insert event details</h3>
+						<h3>Insert your event details</h3>
 						{{> host}}
 					</div>
 				{{/if}}
@@ -38,7 +38,7 @@
 				<!-- Movies section -->
 				<div class="section">
 					{{#if isEditMode}}
-						<h3>Add movies for friends to vote on</h3>
+						<h3>List movies you want to see</h3>
 					{{else}}
 						<h3>Vote for movies you would like to see</h3>
 					{{/if}}
@@ -48,19 +48,22 @@
 					{{else}}
 						<p class="no-movies">No movies entered yet</p>
 					{{/if}}
-
-					{{> addmovie}}
+					{{#if friendsAddMovies}}
+						{{> addmovie}}
+					{{/if}}
 				</div>
 
 				<!-- Sharing link section -->
-				<div class="section">
-					{{#if isEditMode}}
-						<h3>Invite friends</h3>
-					{{else}}
-						<h3>Invite more friends</h3>
-					{{/if}}
-					{{> share}}
-				</div>
+				{{#if friendsInvite}}
+					<div class="section">
+						{{#if isEditMode}}
+							<h3>Invite friends by sharing this link</h3>
+						{{else}}
+							<h3>Invite more friends</h3>
+						{{/if}}
+						{{> share}}
+					</div>
+				{{/if}}
 
 				<!-- Bottom information section -->
 				<div class="section">

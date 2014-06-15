@@ -24,13 +24,19 @@ Template.body.helpers({
 	isEditMode: function() {
 		return Session.get('editMode');
 	},
-	_host: function() {
-			return Events.findOne({_id: Session.get('eId')}).host['Host'];
+	name: function() {
+		return Events.findOne({_id: Session.get('eId')}).host['Name'];
 	},
 	location: function() {
-			return Events.findOne({_id: Session.get('eId')}).host['Location'];
+		return Events.findOne({_id: Session.get('eId')}).host['Location'];
 	},
 	time: function() {
-			return Events.findOne({_id: Session.get('eId')}).host['Time'];
+		return Events.findOne({_id: Session.get('eId')}).host['Time'];
 	},
+	friendsAddMovies: function() {
+		return Events.findOne({_id: Session.get('eId')}).host['friendsAddMovies'];
+	},
+	friendsInvite: function() {
+		return Events.findOne({_id: Session.get('eId')}).host['friendsInvite'];
+	}
 });

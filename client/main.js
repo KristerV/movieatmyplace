@@ -17,9 +17,10 @@ createDefaultEvent = function(eventId) {
 	Events.insert({
 		_id: eventId,
 		host: {
-			Host: '',
+			Name: '',
 			Location: '',
 			Time: '',
+
 		}
 	});
 }
@@ -28,31 +29,43 @@ createDefaultEvent = function(eventId) {
 var eventId = getParams('eId');
 Session.set("eId", eventId);
 
-// When collection is actually ready
-Meteor.subscribe('events', eventId, function(){
-	var eventId = Session.get("eId");
-	var newEvent = false;
-
-	// Must be new event
-	if (!isset(eventId)) {
-		newEvent = true;
-		var eventId = generateHash();
-	}
-
-	// Create event if needed
-	if (!isset( Events.findOne({_id: eventId}) )) {
-		newEvent = true;
-		createDefaultEvent(eventId);
-		Session.set("editMode", true);
-	}
-
-	// Need to subscribe a second time with correct eventId
-	if (newEvent)
-		Meteor.subscribe('events', eventId);
-
-	// Save eventid for later
-	Session.set('eId', eventId);
+var interval = Meteor.setInterval(function(){
 	
-	// Remove loading screen
-	Session.set('isLoading', false);
-});
+	// Interval checks if Events is ready
+	if (!isset(Events))
+		return false;
+	else
+		Meteor.clearInterval(Session.get('newEventInterval'));
+
+	// When collection is actually ready
+	Meteor.subscribe('events', eventId, function(){
+		var eventId = Session.get("eId");
+		var newEvent = false;
+
+		// Must be new event
+		if (!isset(eventId)) {
+			newEvent = true;
+			var eventId = generateHash();
+		}
+
+		// Create default event if needed
+		if (!isset( Events.findOne({_id: eventId}) )) {
+			newEvent = true;
+			createDefaultEvent(eventId);
+			Session.set("editMode", true);
+		}
+
+		// Need to subscribe a second time with correct eventId
+		if (newEvent)
+			Meteor.subscribe('events', eventId);
+
+		// Save eventid for later
+		Session.set('eId', eventId);
+		
+		// Remove loading screen
+		Session.set('isLoading', false);
+	});
+}, 50);
+
+// Save interval ID to cancel it later
+Session.set('newEventInterval', interval);
