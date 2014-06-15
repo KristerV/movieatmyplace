@@ -14,29 +14,55 @@
 			{{> loading}}
 		{{else}}
 			<div class="left-container" style="{{#if youtubePlayerReady}}width:50%{{/if}}">
+
+				<!-- Title section -->
 				<div class="section" style="{{#if youtubeImage}}{{else}}background-color:#f5f5f5;color: black;text-shadow:none;{{/if}}">
 					{{#if youtubeImage}}
 						<img class="coverImage" src="{{youtubeImage}}">
 					{{/if}}
-					<h2>Let your friends choose the movie tonight</h2>
+					{{#if isEditMode}}
+						<h2>Which of your preferred movies do your friends want to see?</h2>
+					{{else}}
+						<h2>{{_host}} has invited you to<br>see a movie at {{location}}, {{time}}.</h2>
+					{{/if}}
 				</div>
+
+				<!-- Event details section -->
+				{{#if isEditMode}}
+					<div class="section">
+						<h3>Event details</h3>
+						{{> host}}
+					</div>
+				{{/if}}
+
+				<!-- Movies section -->
 				<div class="section">
-					<h3>1. Give details</h3>
-					{{> host}}
-				</div>
-				<div class="section">
-					<h3>2. Vote for movies</h3>
+					{{#if isEditMode}}
+						<h3>Add movies for friends to vote on</h3>
+					{{else}}
+						<h3>Vote for movies you would like to see</h3>
+					{{/if}}
+
 					{{#if anyMovies}}
 						{{> movies}}
 					{{else}}
 						<p class="no-movies">No movies entered yet</p>
 					{{/if}}
+
 					{{> addmovie}}
 				</div>
+
+				<!-- Sharing link section -->
 				<div class="section">
-					<h3>3. Invite friends</h3>
+					{{#if isEditMode}}
+						<h3>Invite friends</h3>
+					{{else}}
+						<h3>Invite more friends</h3>
+					{{/if}}
 					{{> share}}
 				</div>
+
+				<!-- Bottom information section -->
 				<div class="section">
 					{{> outro}}
 				</div>

@@ -3,9 +3,10 @@ var url = getDomain();
 if (url[0].indexOf("movieat.mp") > -1)
 	window.location.replace("http://movieatmyplace.com/?" + url[1]);
 
-// Hide content while still loading site
+// Set some site wide variables
 Session.setDefault('isLoading', true);
 Session.setDefault('movieSearch', false);
+Session.setDefault("editMode", false);
 
 // Generate userId if none
 if (!isset(localStorage.getItem("userId")))
@@ -23,36 +24,35 @@ createDefaultEvent = function(eventId) {
 	});
 }
 
+// Parse event id
+var eventId = getParams('eId');
+Session.set("eId", eventId);
 
-// When meteor starts up
-Meteor.startup(function () {
+// When collection is actually ready
+Meteor.subscribe('events', eventId, function(){
+	var eventId = Session.get("eId");
+	var newEvent = false;
 
-	// Check if database is ready in interval
-	var interval = Meteor.setInterval(function(){
-		if (typeof Events != 'undefined' && isset(Events.findOne())) {
-			var eventId = getParams('eId');
+	// Must be new event
+	if (!isset(eventId)) {
+		newEvent = true;
+		var eventId = generateHash();
+	}
 
-			if (!isset(eventId)) {
+	// Create event if needed
+	if (!isset( Events.findOne({_id: eventId}) )) {
+		newEvent = true;
+		createDefaultEvent(eventId);
+		Session.set("editMode", true);
+	}
 
-				// If no event id in GET, generate one
-				var eventId = generateHash();
-				createDefaultEvent(eventId);
+	// Need to subscribe a second time with correct eventId
+	if (newEvent)
+		Meteor.subscribe('events', eventId);
 
-			} else if (!isset(Events.findOne({_id: eventId}))) {
-
-				// EventId is in GET, but not in database
-				// User is trying to make custom id - good!
-				createDefaultEvent(eventId);
-			}
-
-			// Remove loading screen
-			Session.set('isLoading', false);
-
-			// Save eventid for later
-			Session.set('eId', eventId);
-
-			// Stop interval
-			Meteor.clearInterval(interval);
-		}
-	}, 50);
+	// Save eventid for later
+	Session.set('eId', eventId);
+	
+	// Remove loading screen
+	Session.set('isLoading', false);
 });

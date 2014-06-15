@@ -20,5 +20,17 @@ Template.body.helpers({
 		if (isset(Event)) {
 			return isset(Event['movies']) ? true : false;
 		}
-	}
+	},
+	isEditMode: function() {
+		return Session.get('editMode');
+	},
+	_host: function() {
+			return Events.findOne({_id: Session.get('eId')}).host['Host'];
+	},
+	location: function() {
+			return Events.findOne({_id: Session.get('eId')}).host['Location'];
+	},
+	time: function() {
+			return Events.findOne({_id: Session.get('eId')}).host['Time'];
+	},
 });
