@@ -34,9 +34,15 @@ Template.body.helpers({
 		return Events.findOne({_id: Session.get('eId')}).host['Time'];
 	},
 	friendsAddMovies: function() {
-		return Events.findOne({_id: Session.get('eId')}).host['friendsAddMovies'];
+		if (!Session.get('editMode'))
+			return Events.findOne({_id: Session.get('eId')}).host['friendsAddMovies'];
+		else
+			return true;
 	},
 	friendsInvite: function() {
-		return Events.findOne({_id: Session.get('eId')}).host['friendsInvite'];
+		if (!Session.get('editMode'))
+			return Events.findOne({_id: Session.get('eId')}).host['friendsInvite'];
+		else
+			return true;
 	}
 });
