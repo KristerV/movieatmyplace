@@ -25,13 +25,16 @@ Template.body.helpers({
 		return Session.get('editMode');
 	},
 	name: function() {
-		return Events.findOne({_id: Session.get('eId')}).host['Name'];
+		var info = Events.findOne({_id: Session.get('eId')}).host['Name'];
+		return info ? info : 'Somebody';
 	},
 	location: function() {
-		return Events.findOne({_id: Session.get('eId')}).host['Location'];
+		var info = Events.findOne({_id: Session.get('eId')}).host['Location'];
+		return info ? info : 'an unknown location';
 	},
 	time: function() {
-		return Events.findOne({_id: Session.get('eId')}).host['Time'];
+		var info = Events.findOne({_id: Session.get('eId')}).host['Time'];
+		return info ? ', ' + info : '';
 	},
 	friendsAddMovies: function() {
 		if (!Session.get('editMode'))
