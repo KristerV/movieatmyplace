@@ -1,25 +1,25 @@
-Template.addmovie.helpers({
+Template.movieadd.helpers({
 
 	// Get autocomplete contents
 	autocomplete: function() {
 		return Session.get('movieSearch');
 	},
 	top: function() {
-		var text = $('.addmovie input[type=text]');
-		var textTop = $('.addmovie input[type=text]').offset().top;
-		var textHeight = $('.addmovie input[type=text]').height();
+		var text = $('.movieadd input[type=text]');
+		var textTop = $('.movieadd input[type=text]').offset().top;
+		var textHeight = $('.movieadd input[type=text]').height();
 		var top = textTop + textHeight;
 		return top;
 	},
 });
 
-Template.addmovie.events({
+Template.movieadd.events({
 
 	// Add film form submit
-	'submit form, click .addmovie input[type=radio]': function(e, tmpl) {
+	'submit form, click .movieadd input[type=radio]': function(e, tmpl) {
 		e.preventDefault();
 
-		var formData = getFormData('form[name="addmovie"]');
+		var formData = getFormData('form[name="movieadd"]');
 		formData['youtube'] = '';
 		formData['votes'] = {};
 		formData['votesSum'] = 0;
@@ -33,12 +33,12 @@ Template.addmovie.events({
 		Events.update({_id: Session.get('eId')}, {$push: {movies: formData}});
 
 		// Clear autocomplete
-		$('.addmovie input[name="title"]').val('');
+		$('.movieadd input[name="title"]').val('');
 		clearAutocomplete();
 	},
 
 	// Search for movies when typing
-	'keyup .addmovie input[name=title]': function(e, tmpl) {
+	'keyup .movieadd input[name=title]': function(e, tmpl) {
 
 		// User is navigating autocomplete list
 		if ([38, 40].indexOf(e.which) > -1) {
