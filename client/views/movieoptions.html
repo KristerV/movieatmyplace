@@ -1,0 +1,14 @@
+<template name="movieoptions">
+	<table class="options">
+		<tr>
+			<td class="add-point">+</td>
+			<td class="see-trailer">trailer</td>
+			<!-- <td class="votesSum">{{votesSum}}</td> -->
+			<!-- <td class="edit-movie">edit</td> -->
+			{{#if editMode}}
+			<td class="remove-movie">remove</td>
+			{{/if}}
+			<td class="remove-point">-</td>
+		</tr>
+	</table>
+</template>
