@@ -6,3 +6,6 @@
 standard-app-packages
 accounts-ui
 less
+email
+http
+npm
