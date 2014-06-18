@@ -16,6 +16,7 @@ if (!isset(localStorage.getItem("userId")))
 createDefaultEvent = function(eventId) {
 	Events.insert({
 		_id: eventId,
+		editHash: generateHash(),
 		host: {
 			Name: '',
 			Location: '',
@@ -40,6 +41,7 @@ var interval = Meteor.setInterval(function(){
 	// When collection is actually ready
 	Meteor.subscribe('events', eventId, function(){
 		var eventId = Session.get("eId");
+		var getEditHash = getParams('edit');
 		var newEvent = false;
 
 		// Must be new event
@@ -58,6 +60,14 @@ var interval = Meteor.setInterval(function(){
 		// Need to subscribe a second time with correct eventId
 		if (newEvent)
 			Meteor.subscribe('events', eventId);
+
+		// if editHash present, go to edit mode
+		else if (isset(getEditHash)) {
+			Meteor.call('editHashesEqual', eventId, getEditHash, function(error, result){
+				if (result)
+					Session.set('editMode', true);
+			});
+		}
 
 		// Save eventid for later
 		Session.set('eId', eventId);

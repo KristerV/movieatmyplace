@@ -18,10 +18,23 @@ Template.host.events({
 		Events.update({_id: Session.get('eId')}, {$set: {host: formData}});
 	},
 	'blur input[name=Email]': function(e, tmpl) {
+		
 		if (!isValidEmailAddress(e.currentTarget.value))
 			return false;
-		
-		Meteor.call('sendEmail', e.currentTarget.value);
+
+		var editHash = Events.findOne({_id: Session.get('eId')})['editHash'];
+		var editLink = 'movieat.mp/?eId=' + Session.get('eId') + '&edit=' + editHash;
+
+		Meteor.call(
+		            'sendEmail', 
+					e.currentTarget.value,
+					'Your movie event edit link',
+					'<p>Hi!</p>\
+					<br>\
+					<p>You can edit your movie event here: <a href="' + editLink + '">' + editLink + '</a></p>\
+					<br>\
+					<p>Have a good time,</p>\
+					<p>MovieBot</p>');
 	}
 });
 
