@@ -22,19 +22,11 @@ Template.host.events({
 		if (!isValidEmailAddress(e.currentTarget.value))
 			return false;
 
-		var editHash = Events.findOne({_id: Session.get('eId')})['editHash'];
+		var editHash = Events.findOne({_id: Session.get('eId')}).editHash;
 		var editLink = 'movieat.mp/?eId=' + Session.get('eId') + '&edit=' + editHash;
 
-		Meteor.call(
-		            'sendEmail', 
-					e.currentTarget.value,
-					'Your movie event edit link',
-					'<p>Hi!</p>\
-					<br>\
-					<p>You can edit your movie event here: <a href="' + editLink + '">' + editLink + '</a></p>\
-					<br>\
-					<p>Have a good time,</p>\
-					<p>MovieBot</p>');
+		Meteor.call('sendEmailEditLink',
+					e.currentTarget.value);
 	}
 });
 

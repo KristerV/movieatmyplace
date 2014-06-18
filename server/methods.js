@@ -6,5 +6,5 @@ Meteor.methods({
 			return true;
 		else
 			return false;
-	}
+	},
 });
