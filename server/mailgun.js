@@ -5,11 +5,12 @@ process.env['MAILGUN_API_URL'] = "https://api.mailgun.net/v2";
 Meteor.startup(function () {
 
 	Meteor.methods({
-		sendEmail: function (to, subject, body) {
+		sendEmailEditLink: function (to, eventId) {
 
 			this.unblock();
 
-			var editLink = Events.findOne({_id: eventId}).editHash;
+			var editHash = Events.findOne({_id: eventId}).editHash;
+			var editLink = "http://movieat.mp/?eId=" + eventId + "&edit=" + editHash;
 			var subject = 'Your movie event edit link';
 			var body = '<p>Hi!</p>\
 			<br>\
