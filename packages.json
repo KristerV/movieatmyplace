@@ -1,6 +1,2 @@
 {
-	"connect": "2.19.6",
-	"connect-route": "0.1.4",
-	"fibers": "1.0.1",
-	"crypto": "0.0.3",
 }
