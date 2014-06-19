@@ -7,7 +7,7 @@ Template.movies.helpers({
 			var ordered = sortObject(Event['movies']);
 			if (!isset(ordered))
 				return false;
-			Session.set("topTrailer", ordered[0].youtube);
+			Session.set("topTrailer", ordered[0].poster);
 			return ordered;
 		}
 	},

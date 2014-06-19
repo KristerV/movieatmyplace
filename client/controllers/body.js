@@ -5,12 +5,12 @@ Template.body.helpers({
 	isPopup: function(){
 		return isset(Session.get('editData')) ? true : false;
 	},
-	youtubeImage: function() {
+	coverImage: function() {
 		var url = Session.get('topTrailer');
 		if (!isset(url))
 			return false;
-		var image = "http://img.youtube.com/vi/"+getYoutubeId(url)+"/0.jpg";
-		return image;
+		$.backstretch(url);
+		return url;
 	},
 	youtubePlayerReady: function() {
 		return Session.get('youtubePlayer') ? true : false;

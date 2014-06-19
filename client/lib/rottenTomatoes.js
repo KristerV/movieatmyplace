@@ -40,6 +40,7 @@ addRottenDetailsToMovie = function(movieId, details) {
 		year:           isset(details['year'])          ? details['year']                      : null,
 		studio:         isset(details['studio'])        ? details['studio']                    : null,
 		thumbnail:      isset(details['posters'])       ? details['posters']['thumbnail']      : null,
+		poster:      	isset(details['posters'])       ? details['posters']['original']       : null,
 		audienceRating: isset(details['ratings'])       ? details['ratings']['audience_score'] : null,
 		criticRating:   isset(details['ratings'])       ? details['ratings']['critics_score']  : null,
 		duration:       isset(details['runtime'])       ? details['runtime']                   : null,
