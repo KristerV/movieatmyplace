@@ -85,7 +85,7 @@ Template.movieadd.events({
 		// After item has been added, clear autocomplete
 		Meteor.setTimeout(function(){
 			clearAutocomplete();
-		}, 100);
+		}, 500);
 	}
 });
 
