@@ -1,6 +1,8 @@
 
 <template name="body">
-	<div class="bodycontent" style="{{#if coverImage}}{{else}}background-color: rgb(230,230,230);{{/if}}">
+	<div class="bodycontent">
+		<div style="position:fixed;width:100%;height:100%;z-index:-9;{{#if coverImage}}{{else}}background-color: rgb(230,230,230);{{/if}}">
+		</div>
 		{{#if isPopup}}
 			{{> popup}}
 		{{/if}}
