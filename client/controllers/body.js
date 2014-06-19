@@ -25,27 +25,46 @@ Template.body.helpers({
 		return Session.get('editMode');
 	},
 	name: function() {
-		var info = Events.findOne({_id: Session.get('eId')}).host['Name'];
+		var Event = Events.findOne({_id: Session.get('eId')});
+		if (!Event)
+			return false;
+		var info = Event.host['Name'];
 		return info ? info : 'Somebody';
 	},
 	location: function() {
-		var info = Events.findOne({_id: Session.get('eId')}).host['Location'];
+		var Event = Events.findOne({_id: Session.get('eId')});
+		if (!Event)
+			return false;
+		var info = Event.host['Location'];
 		return info ? info : 'an unknown location';
 	},
 	time: function() {
-		var info = Events.findOne({_id: Session.get('eId')}).host['Time'];
+		var Event = Events.findOne({_id: Session.get('eId')});
+		if (!Event)
+			return false;
+		var info = Event.host['Time'];
 		return info ? ', ' + info : '';
 	},
 	friendsAddMovies: function() {
-		if (!Session.get('editMode'))
-			return Events.findOne({_id: Session.get('eId')}).host['friendsAddMovies'];
-		else
+		if (!Session.get('editMode')) {
+			var Event = Events.findOne({_id: Session.get('eId')});
+
+			if (!Event)
+				return false;
+
+			return Event.host['friendsAddMovies'];
+		} else
 			return true;
 	},
 	friendsInvite: function() {
-		if (!Session.get('editMode'))
-			return Events.findOne({_id: Session.get('eId')}).host['friendsInvite'];
-		else
+		if (!Session.get('editMode')) {
+			var Event = Events.findOne({_id: Session.get('eId')});
+
+			if (!Event)
+				return false;
+
+			return Event.host['friendsInvite'];
+		} else
 			return true;
 	}
 });
