@@ -20,6 +20,14 @@
 					{{/if}}
 				</div>
 
+				<!-- Event details section -->
+				{{#if isEditMode}}
+					<div class="section">
+						<h3>Insert your event details</h3>
+						{{> host}}
+					</div>
+				{{/if}}
+
 				<!-- Movies section -->
 				<div class="section">
 					{{#if isEditMode}}
@@ -37,14 +45,6 @@
 						{{> movieadd}}
 					{{/if}}
 				</div>
-
-				<!-- Event details section -->
-				{{#if isEditMode}}
-					<div class="section">
-						<h3>Insert your event details</h3>
-						{{> host}}
-					</div>
-				{{/if}}
 
 				<!-- Sharing link section -->
 				{{#if friendsInvite}}
