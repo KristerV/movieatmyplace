@@ -39,7 +39,7 @@ Template.movies.events({
 		else
 			vote = 'like';
 
-		var movieId = $(e.target).parent().attr('id');
+		var movieId = $(e.target).parent().parent().attr('id');
 		$('#' + movieId).removeClass('like dislike none');
 
 		changeMovieVote(e, vote);
@@ -50,7 +50,19 @@ Template.movies.events({
 		var movieId = $(e.target).parent().attr('id');
 		item['movies'] = {id: movieId};
 		Events.update({_id: Session.get('eId')}, {$pull: item});
-	}
+	},
+	'mouseenter .vote': function(e, tmpl) {
+		$(e.target).parent().removeClass('total-votes-text').addClass('my-vote-text');
+		Meteor.setTimeout(function(){
+			$(e.target).parent().removeClass('my-vote-text');
+		}, 1000);
+	},
+	'mouseenter .votesSum': function(e, tmpl) {
+		$(e.target).parent().removeClass('my-vote-text').addClass('total-votes-text');
+		Meteor.setTimeout(function(){
+			$(e.target).parent().removeClass('total-votes-text');
+		}, 1000);
+	},
 });
 
 findMovieIndexInCollectionById = function(movieId) {
@@ -66,7 +78,7 @@ changeMovieVote = function(e, vote) {
 
 	// Get basic info
 	var userId = localStorage.getItem("userId");
-	var itemIndex = $(e.target).parent().attr('originalOrder');
+	var itemIndex = $(e.target).parent().parent().attr('originalOrder');
 	var Event = Events.findOne({_id: Session.get('eId')});
 	var votes = Event.movies[itemIndex].votes;
 	var userVote = votes[userId];
