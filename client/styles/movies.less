@@ -6,8 +6,12 @@
 		text-align: left;
 		display: block;
 		position: relative;
+		padding-left: 0.3em;
 		@opacity: 0.8;
 		@opacitytwo: 0.5;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
 		.delete {
 			float: right;
 			height: 1.5em;
@@ -41,24 +45,34 @@
 				transform: rotate(-90deg);
 			}
 		}
+		&.like {
+			background-color: rgba(0,255,0,0.5);
+			&:after {
+				font-size: 0.7em;
+				float:right;
+				color: white;
+				content: "I'd watch this";
+			}
+		}
 
-		&.like:after {
-			font-size: 0.7em;
-			float:right;
-			color: green;
-			content: "I'd watch this";
+		&.dislike {
+			background-color: rgba(255,0,0,0.5);
+			&:after {
+				font-size: 0.7em;
+				float:right;
+				color: white;
+				content: "no way";
+			}
 		}
-		&.dislike:after {
-			font-size: 0.7em;
-			float:right;
-			color: red;
-			content: "no way";
-		}
-		&.none:after {
-			font-size: 0.7em;
-			float:right;
-			color: grey;
-			content: "whatever";
+
+		&.none {
+			background-color: rgba(100,100,200,0.5);
+			&:after {
+				font-size: 0.7em;
+				float:right;
+				color: white;
+				content: "whatever";
+			}
 		}
 	}
 }

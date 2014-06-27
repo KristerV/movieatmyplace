@@ -30,16 +30,20 @@ Template.movies.helpers({
 Template.movies.events({
 
 	'click .vote': function(e, tmpl) {
+
 		var button = $(e.currentTarget);
-		if (button.hasClass('like')) {
-			changeMovieVote(e, 'dislike');
-		}
-		else if (button.hasClass('dislike')) {
-			changeMovieVote(e, "none");
-		}
-		else {
-			changeMovieVote(e, 'like');
-		}
+		if (button.hasClass('like'))
+			vote = 'dislike';
+		else if (button.hasClass('dislike'))
+			vote = 'none';
+		else
+			vote = 'like';
+
+		var movieId = $(e.target).parent().attr('id');
+		$('#' + movieId).removeClass('like dislike none');
+
+		changeMovieVote(e, vote);
+		Meteor.setTimeout(function(){displayVoteResult(movieId, vote)}, 1);
 	},
 	'click .delete': function(e, tmpl) {
 		var item = {};
@@ -86,14 +90,11 @@ changeMovieVote = function(e, vote) {
 	data['movies.' + itemIndex + '.votes.' + userId] = userVote;
 	data['movies.' + itemIndex + '.votesSum'] = votesSum;
 	Events.update({_id: Session.get('eId')}, {$set: data});
-
-	displayVoteResult(e, vote);
 }
 
-displayVoteResult = function(e, vote) {
-	var movieDiv = $(e.target).parent();
-	movieDiv.removeClass('like dislike none').addClass(vote);
+displayVoteResult = function(movieId, vote) {
+	$('#' + movieId).addClass(vote);
 	Meteor.setTimeout(function(){
-		movieDiv.removeClass(vote);
+		$('#' + movieId).removeClass(vote);
 	}, 1000);
 }
