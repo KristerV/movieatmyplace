@@ -40,6 +40,13 @@ Template.movies.events({
 		else {
 			changeMovieVote(e, 'like');
 		}
+	},
+	'click .delete': function(e, tmpl) {
+		var item = {};
+		var movieId = $(e.target).attr('id');
+		var movieIndex = findMovieIndexInCollectionById(movieId);
+		item['movies'] = {id: movieId};
+		Events.update({_id: Session.get('eId')}, {$pull: item});
 	}
 });
 
@@ -78,6 +85,5 @@ changeMovieVote = function(e, vote) {
 	var data = {};
 	data['movies.' + itemIndex + '.votes.' + userId] = userVote;
 	data['movies.' + itemIndex + '.votesSum'] = votesSum;
-	console.log("pass")
 	Events.update({_id: Session.get('eId')}, {$set: data});
 }
