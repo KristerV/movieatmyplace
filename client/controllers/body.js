@@ -31,12 +31,19 @@ Template.body.helpers({
 		var info = Event.host['Name'];
 		return info ? info : 'Somebody';
 	},
+	phone: function() {
+		var Event = Events.findOne({_id: Session.get('eId')});
+		if (!Event)
+			return false;
+		var info = Event.host['Phone nr'];
+		return info ? ' (' + info + ')' : '';
+	},
 	location: function() {
 		var Event = Events.findOne({_id: Session.get('eId')});
 		if (!Event)
 			return false;
 		var info = Event.host['Location'];
-		return info ? info : 'an unknown location';
+		return info ? ' at ' + info : '';
 	},
 	time: function() {
 		var Event = Events.findOne({_id: Session.get('eId')});
