@@ -14,7 +14,7 @@
 				<!-- Title section -->
 				<div class="section" style="{{#if coverImage}}{{else}}-webkit-text-stroke:0;background-color:#f5f5f5;color: black;text-shadow:none;{{/if}}">
 					{{#if isEditMode}}
-						<h2>Invite friends over for a movie,<br>let them choose from your selection</h2>
+						<h2>Invite friends over for a movie,<br>let them choose what to watch by voting</h2>
 					{{else}}
 						<h2>{{name}} has invited you to<br>see a movie at {{location}}{{time}}.</h2>
 					{{/if}}
@@ -23,7 +23,8 @@
 				<!-- Event details section -->
 				{{#if isEditMode}}
 					<div class="section">
-						<h3>Insert your event details</h3>
+						<h3 style="margin-bottom: 0.5em;">Your event details</h3>
+						<sup class="super-script">no information is required</sup>
 						{{> host}}
 					</div>
 				{{/if}}

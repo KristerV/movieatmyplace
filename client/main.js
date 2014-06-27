@@ -19,6 +19,7 @@ createDefaultEvent = function(eventId) {
 		editHash: generateHash(),
 		host: {
 			Name: '',
+			'Phone nr': '',
 			Location: '',
 			Time: '',
 
