@@ -47,8 +47,7 @@ Template.movies.events({
 	},
 	'click .delete': function(e, tmpl) {
 		var item = {};
-		var movieId = $(e.target).attr('id');
-		var movieIndex = findMovieIndexInCollectionById(movieId);
+		var movieId = $(e.target).parent().attr('id');
 		item['movies'] = {id: movieId};
 		Events.update({_id: Session.get('eId')}, {$pull: item});
 	}
