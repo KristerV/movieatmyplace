@@ -2,12 +2,16 @@
 	<div class="movies">
 		{{#each movies}}
 			<div class="movie" id="{{id}}" originalOrder="{{originalOrder}}">
+
 				{{title}}
 
 				{{#if isEditMode}}
 					<div class="delete">delete</div>
 				{{else}}
-					<div class="vote {{vote}}">&lt;</div>
+					<div class="votes">
+						<div class="votesSum">{{votesSum}}</div>
+						<div class="vote {{vote}}">&lt;</div>
+					</div>
 				{{/if}}
 			</div>
 		{{/each}}
