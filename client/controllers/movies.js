@@ -35,7 +35,7 @@ Template.movies.events({
 			changeMovieVote(e, 'dislike');
 		}
 		else if (button.hasClass('dislike')) {
-			changeMovieVote(e);
+			changeMovieVote(e, "none");
 		}
 		else {
 			changeMovieVote(e, 'like');
@@ -86,4 +86,14 @@ changeMovieVote = function(e, vote) {
 	data['movies.' + itemIndex + '.votes.' + userId] = userVote;
 	data['movies.' + itemIndex + '.votesSum'] = votesSum;
 	Events.update({_id: Session.get('eId')}, {$set: data});
+
+	displayVoteResult(e, vote);
+}
+
+displayVoteResult = function(e, vote) {
+	var movieDiv = $(e.target).parent();
+	movieDiv.removeClass('like dislike none').addClass(vote);
+	Meteor.setTimeout(function(){
+		movieDiv.removeClass(vote);
+	}, 1000);
 }

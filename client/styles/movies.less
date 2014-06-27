@@ -42,5 +42,24 @@
 				transform: rotate(-90deg);
 			}
 		}
+
+		&.like:after {
+			font-size: 0.7em;
+			float:right;
+			color: green;
+			content: "I'd watch this";
+		}
+		&.dislike:after {
+			font-size: 0.7em;
+			float:right;
+			color: red;
+			content: "no way";
+		}
+		&.none:after {
+			font-size: 0.7em;
+			float:right;
+			color: grey;
+			content: "whatever";
+		}
 	}
 }
