@@ -10,7 +10,6 @@ Template.body.helpers({
 		if (!isset(url))
 			return false;
 		$.backstretch(url);
-		console.log(url);
 		return url;
 	},
 	youtubePlayerReady: function() {

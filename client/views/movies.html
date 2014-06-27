@@ -1,7 +1,15 @@
 <template name="movies">
 	<div class="movies">
 		{{#each movies}}
-			<div class="movie {{vote}}" id="{{id}}" originalOrder="{{originalOrder}}">{{> movieoptions}}<div>{{title}}</div></div>
+			<div class="movie" id="{{id}}" originalOrder="{{originalOrder}}">
+				{{title}}
+
+				{{#if isEditMode}}
+					is edit mode
+				{{else}}
+					<div class="vote {{vote}}">&lt;</div>
+				{{/if}}
+			</div>
 		{{/each}}
 	</div>
 </template>

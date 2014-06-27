@@ -15,27 +15,32 @@ Template.movies.helpers({
 	// Get amount of votes
 	vote: function() {
 		var vote = this.votes[localStorage.getItem('userId')];
-		if (vote == 1)
+		if (vote === 1)
 			return 'like';
-		if (vote == 0)
+		if (vote === 0)
 			return '';
-		if (vote == -1)
+		if (vote === -1)
 			return 'dislike';
+	},
+	isEditMode: function() {
+		return Session.get("editMode");
 	}
 });
 
 Template.movies.events({
 
-	// Display film options
-	'mouseenter .movie': function(e, tmpl) {
-		$('.movies .options').css("display", "none");
-		$(e.currentTarget.firstElementChild).css("display", "table");
-	},
-
-	// Undisplay film options
-	'mouseleave .options': function(e, tmpl) {
-		$(e.currentTarget).css("display", "none");
-	},
+	'click .vote': function(e, tmpl) {
+		var button = $(e.currentTarget);
+		if (button.hasClass('like')) {
+			changeMovieVote(e, 'dislike');
+		}
+		else if (button.hasClass('dislike')) {
+			changeMovieVote(e);
+		}
+		else {
+			changeMovieVote(e, 'like');
+		}
+	}
 });
 
 findMovieIndexInCollectionById = function(movieId) {
@@ -45,4 +50,34 @@ findMovieIndexInCollectionById = function(movieId) {
 	for (var i = 0; i < movies.length; i++)
 		if (movies[i]['id'] == movieId)
 			return i;
+}
+
+changeMovieVote = function(e, vote) {
+
+	// Get basic info
+	var userId = localStorage.getItem("userId");
+	var itemIndex = $(e.target).parent().attr('originalOrder');
+	var Event = Events.findOne({_id: Session.get('eId')});
+	var votes = Event.movies[itemIndex].votes;
+	var userVote = votes[userId];
+	delete votes[userId]; // Delete so it wont disturb when calculating total
+
+	// Figure out what point to give
+	if (vote == 'like')
+		userVote = 1;
+	else if (vote == 'dislike')
+		userVote = -1;
+	else
+		userVote = 0;
+
+	// Calculate sum of votes
+	var votesSum = userVote;
+	$.each(votes, function(usr, val) {votesSum += val});
+
+	// Save data
+	var data = {};
+	data['movies.' + itemIndex + '.votes.' + userId] = userVote;
+	data['movies.' + itemIndex + '.votesSum'] = votesSum;
+	console.log("pass")
+	Events.update({_id: Session.get('eId')}, {$set: data});
 }
