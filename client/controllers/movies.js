@@ -45,22 +45,27 @@ Template.movies.events({
 		changeMovieVote(e, vote);
 		Meteor.setTimeout(function(){displayVoteResult(movieId, vote)}, 1);
 	},
+	
 	'click .delete': function(e, tmpl) {
 		var item = {};
 		var movieId = $(e.target).parent().attr('id');
 		item['movies'] = {id: movieId};
 		Events.update({_id: Session.get('eId')}, {$pull: item});
 	},
+	
 	'mouseenter .vote': function(e, tmpl) {
-		$(e.target).parent().removeClass('total-votes-text').addClass('my-vote-text');
+		$('.tooltip-my-vote, .tooltip-total-votes').removeClass('tooltip-my-vote tooltip-total-votes');
+		$(e.target).parent().addClass('tooltip-my-vote');
 		Meteor.setTimeout(function(){
-			$(e.target).parent().removeClass('my-vote-text');
+			$(e.target).parent().removeClass('tooltip-my-vote');
 		}, 1000);
 	},
+	
 	'mouseenter .votesSum': function(e, tmpl) {
-		$(e.target).parent().removeClass('my-vote-text').addClass('total-votes-text');
+		$('.tooltip-my-vote, .tooltip-total-votes').removeClass('tooltip-my-vote tooltip-total-votes');
+		$(e.target).parent().addClass('tooltip-total-votes');
 		Meteor.setTimeout(function(){
-			$(e.target).parent().removeClass('total-votes-text');
+			$(e.target).parent().removeClass('tooltip-total-votes');
 		}, 1000);
 	},
 });

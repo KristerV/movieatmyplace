@@ -3,6 +3,7 @@
 		{{#each movies}}
 			<div class="movie" id="{{id}}" originalOrder="{{originalOrder}}">
 
+				<div class="title">{{title}}</div>
 
 				{{#if isEditMode}}
 					<div class="delete">delete</div>
@@ -12,7 +13,7 @@
 						<div class="votesSum">{{votesSum}}</div>
 					</div>
 				{{/if}}
-				<div class="title">{{title}}</div>
+
 			</div>
 		{{/each}}
 	</div>
