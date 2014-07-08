@@ -4,7 +4,7 @@ Template.movies.helpers({
 	movies: function() {
 		var Event = Events.findOne({_id: Session.get('eId')}, {sort: {'movies.$.votesSum': -1}});
 		if (isset(Event)) {
-			var ordered = sortObject(Event['movies']);
+			var ordered = reformatMovies(Event['movies'], false);
 			if (!isset(ordered))
 				return false;
 			Session.set("topTrailer", ordered[0].poster);
@@ -43,7 +43,8 @@ Template.movies.events({
 		$('#' + movieId).removeClass('like dislike none');
 
 		changeMovieVote(e, vote);
-		Meteor.setTimeout(function(){displayVoteResult(movieId, vote)}, 1);
+		// Disabled along with movie sorting
+		// Meteor.setTimeout(function(){displayVoteResult(movieId, vote)}, 1);
 	},
 	
 	'click .delete': function(e, tmpl) {
