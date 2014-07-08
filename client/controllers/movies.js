@@ -7,7 +7,6 @@ Template.movies.helpers({
 			var ordered = reformatMovies(Event['movies'], false);
 			if (!isset(ordered))
 				return false;
-			Session.set("topTrailer", ordered[0].poster);
 			return ordered;
 		}
 	},
