@@ -4,6 +4,9 @@
 		<input type="submit" value="Add movie">
 		{{#if autocomplete}}
 		<div class="autocomplete" style="top: {{top}};">
+			{{#if autocompleteLoading}}
+				<p class="spin">S</p>
+			{{else}}
 				{{#each autocomplete}}
 					{{#if Error}}
 						<p>{{Error}}</p>
@@ -12,6 +15,7 @@
 							<label for="{{id}}">{{title}} ({{year}})</label>
 					{{/if}}
 				{{/each}}
+			{{/if}}
 		</div>
 		{{/if}}
 	</form>

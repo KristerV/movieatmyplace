@@ -1,6 +1,9 @@
 Template.movieadd.helpers({
 
 	// Get autocomplete contents
+	autocompleteLoading: function() {
+		return Session.get('movieSearch') == 'loading-autocomplete' ? true : false;
+	},
 	autocomplete: function() {
 		return Session.get('movieSearch');
 	},
@@ -63,6 +66,7 @@ Template.movieadd.events({
 		}
 		// User is just typing
 		else {
+			Session.set('movieSearch', ['loading-autocomplete']);
 			// Don't search for one letter
 			if (e.target.value.length < 2) {
 				clearAutocomplete();
