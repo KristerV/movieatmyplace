@@ -8,6 +8,10 @@ Template.movies.helpers({
 			if (!isset(ordered))
 				return false;
 			return ordered;
+			// Perhaps useful some other time
+			// var ordered = Event.movies.sort(function(a, b){
+			// 	return a.votesSum < b.votesSum;
+			// });
 		}
 	},
 
