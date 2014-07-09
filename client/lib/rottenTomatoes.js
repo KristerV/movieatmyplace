@@ -33,7 +33,6 @@ getRottenMovieDetails = function(movieId, rottenId) {
 addRottenDetailsToMovie = function(movieId, details) {
 
 	// Format information
-	console.log(details);
 	rottenData = {
 		rottenId:       isset(details['id'])            ? details['id']                        : null,
 		imdbId:         isset(details['alternate_ids']) ? details['alternate_ids']['imdb']     : null,
@@ -50,19 +49,25 @@ addRottenDetailsToMovie = function(movieId, details) {
 
 	rottenData['poster'] = rottenData['poster'].replace('_tmb.jpg', '_ori.jpg');
 
-	var actors = [];
-	$.each(details.abridged_cast, function(actor) {
-		actors.push(actor.name);
-	});
-	rottenData['cast'] = actors.join(', ');
+	if (isset(details['abridged_cast'])) {
+		var actors = [];
+		$.each(details.abridged_cast, function(actor) {
+			actors.push(actor.name);
+		});
+		rottenData['cast'] = actors.join(', ');
+	}
 
-	var directors = [];
-	$.each(details.abridged_directors, function(director) {
-		directors.push(director.name);
-	});
-	rottenData['directors'] = directors.join(', ');
+	if (isset(details['abridged_directors'])) {
+		var directors = [];
+		$.each(details.abridged_directors, function(director) {
+			directors.push(director.name);
+		});
+		rottenData['directors'] = directors.join(', ');
+	}
 
-	rottenData['genres'] = details.genres.join(', ');
+	if (isset(details['genres'])) {
+		rottenData['genres'] = details.genres.join(', ');
+	}
 
 	// Add already saved data (like votes)
 	var movieIndex = findMovieIndexInCollectionById(movieId);

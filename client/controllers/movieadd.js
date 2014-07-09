@@ -13,7 +13,6 @@ Template.movieadd.helpers({
 		var textHeight = $('.movieadd input[type=text]').height();
 		var top = textTop + textHeight;
 		var textLeft = $('.movieadd input[type=text]').offset().left;
-		console.log("top:" + top + "; left:" + textLeft + ";");
 		return "top:" + top + "px; left:" + textLeft + "px;";
 	},
 });
