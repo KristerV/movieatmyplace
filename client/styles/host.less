@@ -1,8 +1,4 @@
 .hostform {
-	label {
-		font-size: 0.8em;
-		white-space: nowrap;
-	}
 	::-webkit-input-placeholder {
 		font-size: 0.7em;
 		padding-top: 0.3em;
@@ -31,9 +27,6 @@
 		// margin-left: 0.5em;
 		// margin-right: 0.5em;
 		display: flex;
-		p, input {
-			display: block;
-		}
 		p {
 			margin-top: 0.1em;
 			margin-bottom: 0.1em;
@@ -43,6 +36,10 @@
 		}
 		input {
 			flex: 1 1 70%;
+		}
+		label p {
+			display: inline;
+			white-space: normal;
 		}
 
 	}
@@ -56,7 +53,6 @@
 		display: block;
 		p, input {
 			text-align: center;
-			display: block;
 			margin: 0 auto;
 		}
 

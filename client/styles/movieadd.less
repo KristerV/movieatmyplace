@@ -1,6 +1,7 @@
 .movieadd {
 	margin: 0 auto;
 	max-width: 600px;
+	display: flex;
 	.autocomplete {
 		max-width: 600px;
 		position: absolute;
@@ -24,5 +25,12 @@
 	input[type=radio]:checked + label,
 	input[type=radio] + label:hover {
 	    background-color: rgba(0,0,0,0.1);
+	}
+	input[type=text] {
+		flex: 1 1 65%;
+	}
+	input[type=submit] {
+		flex: 1 1 35%;
+		white-space: normal;
 	}
 }
