@@ -14,9 +14,11 @@ if (!isset(localStorage.getItem("userId")))
 
 // An empty event with all necessary details
 createDefaultEvent = function(eventId) {
+	editHash = generateHash();
+
 	Events.insert({
 		_id: eventId,
-		editHash: generateHash(),
+		editHash: editHash,
 		host: {
 			Name: '',
 			'Phone nr': '',
@@ -25,6 +27,7 @@ createDefaultEvent = function(eventId) {
 
 		}
 	});
+	return editHash;
 }
 
 // Parse event id
@@ -45,6 +48,7 @@ var interval = Meteor.setInterval(function(){
 		var getEditHash = getParams('edit');
 		var newEvent = false;
 
+
 		// Must be new event
 		if (!isset(eventId)) {
 			newEvent = true;
@@ -53,9 +57,10 @@ var interval = Meteor.setInterval(function(){
 
 		// Create default event if needed
 		if (!isset( Events.findOne({_id: eventId}) )) {
-			newEvent = true;
-			createDefaultEvent(eventId);
-			Session.set("editMode", true);
+			var editHash = createDefaultEvent(eventId);
+
+			// So the user does not lose session when server updates files
+			window.history.replaceState( {} , 'movieatmyplace', "http://localhost:3000/?eId=" + eventId + "&edit=" + editHash );
 		}
 
 		// Need to subscribe a second time with correct eventId
@@ -69,6 +74,7 @@ var interval = Meteor.setInterval(function(){
 					Session.set('editMode', true);
 			});
 		}
+					Session.set('editMode', true);
 
 		// Save eventid for later
 		Session.set('eId', eventId);
