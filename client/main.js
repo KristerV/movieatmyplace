@@ -75,7 +75,6 @@ var interval = Meteor.setInterval(function(){
 					Session.set('editMode', true);
 			});
 		}
-					Session.set('editMode', true);
 
 		// Save eventid for later
 		Session.set('eId', eventId);
