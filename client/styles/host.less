@@ -1,6 +1,4 @@
-.hostform, .hostform ol {
-	width: 500px;
-	margin: 0 auto;
+.hostform {
 	label {
 		font-size: 0.8em;
 		white-space: nowrap;
@@ -24,4 +22,44 @@
 		font-size: 0.7em;
 		padding-top: 0.3em;
 	}
+}
+
+.hostform {
+	max-width: 600px;
+	margin: 0 auto;
+	div {
+		margin-left: 0.5em;
+		margin-right: 0.5em;
+		display: flex;
+		p, input {
+			display: block;
+		}
+		p {
+			margin-top: 0.1em;
+			margin-bottom: 0.1em;
+			text-align: left;
+			white-space: nowrap;
+			flex: 1 1 30%;
+		}
+		input {
+			flex: 1 1 70%;
+		}
+
+	}
+}
+
+@media all and (max-width: 480px) {
+.hostform {
+	display: flex;
+	flex-direction: column;
+	div {
+		display: block;
+		p, input {
+			text-align: center;
+			display: block;
+			margin: 0 auto;
+		}
+
+	}
+}
 }

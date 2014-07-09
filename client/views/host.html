@@ -1,27 +1,11 @@
 <template name="host">
 	<form name="hostform" class="hostform">
-		<ol>
-			{{#each items}}
-			<tr>
-				<td>{{key}}</td><td> <input type="text" name="{{key}}" value="{{value}}" placeholder="{{placeholder}}"></td>
-			</tr>
-			{{/each}}
-			<tr>
-				<td>Email</td><td> <input type="text" name="Email" placeholder="We email you the edit link"></td>
-			</tr>
-			<!-- <tr>
-				<td></td><td style="text-align:center;"><span class="small-text light-text">We email you the edit link</span></td>
-			</tr> -->
-			<tr>
-				<td colspan="2">
-					<label><input type="checkbox" name="friendsAddMovies" value="true">Allow friends to add movies</label>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<label><input type="checkbox" name="friendsInvite" value="true">Encourage friends to invite more people</label>
-				</td>
-			</tr>
-		</ol>
+		{{#each items}}
+			<div><p>{{key}}</p><input type="text" name="{{key}}" value="{{value}}" placeholder="{{placeholder}}"></div>
+		{{/each}}
+			<div><p>Email</p><input type="text" name="Email" placeholder="We email you the edit link"></div>
+			<!-- <label><input type="checkbox" name="friendsAddMovies" value="true">Allow friends to add movies</label> -->
+			<!-- <label><input type="checkbox" name="friendsInvite" value="true">Encourage friends to invite more people</label> -->
+			
 	</form>
 </template>
