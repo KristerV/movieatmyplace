@@ -87,3 +87,18 @@ var interval = Meteor.setInterval(function(){
 
 // Save interval ID to cancel it later
 Session.set('newEventInterval', interval);
+
+// Disable automatic reload on file change, if autocomplete active
+Meteor._reload.onMigrate(function(reloadFunction) {
+	if (isset(Session.get('movieSearch'))) {
+		Deps.autorun(function(c) {
+			if (!isset(Session.get('movieSearch'))) {
+				c.stop();
+				reloadFunction();
+			}
+		});
+		return [false];
+	} else {
+		return [true];
+	}
+});
