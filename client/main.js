@@ -60,7 +60,8 @@ var interval = Meteor.setInterval(function(){
 			var editHash = createDefaultEvent(eventId);
 
 			// So the user does not lose session when server updates files
-			window.history.replaceState( {} , 'movieatmyplace', "http://movieatmyplace.com/?eId=" + eventId + "&edit=" + editHash );
+			var url = getDomain();
+			window.history.replaceState( {} , 'movieatmyplace', getDomain() + "?eId=" + eventId + "&edit=" + editHash );
 		}
 
 		// Need to subscribe a second time with correct eventId

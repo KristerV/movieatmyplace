@@ -3,7 +3,7 @@
 		<input type="text" name="title">
 		<input type="submit" value="Add movie">
 		{{#if autocomplete}}
-		<div class="autocomplete" style="top: {{top}};">
+		<div class="autocomplete" style="{{style}}">
 			{{#if autocompleteLoading}}
 				<p class="spin">S</p>
 			{{else}}

@@ -7,12 +7,14 @@ Template.movieadd.helpers({
 	autocomplete: function() {
 		return Session.get('movieSearch');
 	},
-	top: function() {
+	style: function() {
 		var text = $('.movieadd input[type=text]');
-		var textTop = $('.movieadd input[type=text]').offset().top;
+		var textTop = $('.movieadd input[type=text]').offset().top + 4;
 		var textHeight = $('.movieadd input[type=text]').height();
 		var top = textTop + textHeight;
-		return top;
+		var textLeft = $('.movieadd input[type=text]').offset().left;
+		console.log("top:" + top + "; left:" + textLeft + ";");
+		return "top:" + top + "px; left:" + textLeft + "px;";
 	},
 });
 
