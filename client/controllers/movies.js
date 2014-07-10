@@ -4,7 +4,7 @@ Template.movies.helpers({
 	movies: function() {
 		var Event = Events.findOne({_id: Session.get('eId')}, {sort: {'movies.$.votesSum': -1}});
 		if (isset(Event)) {
-			var ordered = reformatMovies(Event['movies'], false);
+			var ordered = reformatMovies(Event['movies'], true);
 			if (!isset(ordered))
 				return false;
 			return ordered;
@@ -47,13 +47,13 @@ Template.movies.events({
 
 		changeMovieVote(e, vote);
 		// Disabled along with movie sorting
-		// Meteor.setTimeout(function(){displayVoteResult(movieId, vote)}, 1);
+		Meteor.setTimeout(function(){displayVoteResult(movieId, vote)}, 1);
 	},
 	
 	'click .delete': function(e, tmpl) {
 		var item = {};
 		var movieId = $(e.target).parent().attr('id');
-		item['movies'] = {id: movieId};
+		item['movies'] = {_id: movieId};
 		Events.update({_id: Session.get('eId')}, {$pull: item});
 	},
 	
@@ -79,8 +79,19 @@ findMovieIndexInCollectionById = function(movieId) {
 	var movies = Event.movies;
 
 	for (var i = 0; i < movies.length; i++)
-		if (movies[i]['id'] == movieId)
+		if (movies[i]['_id'] == movieId)
 			return i;
+}
+
+Template.movies.rendered = function() {
+	this.firstNode._uihooks = {
+		moveElement: function (node, next) {
+			console.log(node);
+			$(node).stop(true, true).animate({/*height: 'toggle', */opacity: 0 }, 'slow').promise().done(function(){
+				$(node).insertBefore(next).stop(true, true).animate({ /*height: 'toggle', */opacity: 1 }, 'slow');
+			});
+		},
+	};
 }
 
 changeMovieVote = function(e, vote) {
@@ -116,5 +127,5 @@ displayVoteResult = function(movieId, vote) {
 	$('#' + movieId).addClass(vote);
 	Meteor.setTimeout(function(){
 		$('#' + movieId).removeClass(vote);
-	}, 1000);
+	}, 2000);
 }

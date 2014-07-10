@@ -27,11 +27,11 @@ Template.movieadd.events({
 		formData['youtube'] = '';
 		formData['votes'] = {};
 		formData['votesSum'] = 0;
-		formData['id'] = generateHash();
+		formData['_id'] = generateHash();
 
 		// Add details from Rotten Tomatoes
 		if (isset(formData['autocomplete']))
-			getRottenMovieDetails(formData['id'], formData['autocomplete']);
+			getRottenMovieDetails(formData['_id'], formData['autocomplete']);
 
 		// Save
 		Events.update({_id: Session.get('eId')}, {$push: {movies: formData}});
