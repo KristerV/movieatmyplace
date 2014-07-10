@@ -11,7 +11,7 @@ Template.outro.events({
 			$('.section:last-child').addClass("no-background-image");
 		} else {
 			$('.outro').css("background-color", 'none');
-			$( "#outro-hidden" ).css('display', 'none');
+			$( "#outro-hidden" ).slideUp(1000);
 			if ($('.backstretch').length > 0) {
 				$('.section:last-child').removeClass("no-background-image");
 				$('.section:last-child').addClass("with-background-image");
