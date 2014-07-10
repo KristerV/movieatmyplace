@@ -111,9 +111,11 @@
 	pointer-events:none;
 	font-size: 0.7em;
 	line-height: 1em;
+	font-weight: normal;
 	position: absolute;
-	top: -2em;
-	right: 0em;
+	// top: -2em;
+	// right: 0em;
+	right: 3.5em;
 	color: white;
 	background-color: rgba(170,170,170, 0.95);
 	-webkit-border-radius: 5px;
@@ -121,11 +123,11 @@
 	border-radius: 5px;
 	padding: 0.5em;
 }
-.tooltip-my-vote:before {
+.tooltip-my-vote:not(.like):not(.dislike):not(.animating):hover:before {
 	.tooltip;
 	content: "my vote";
 }
-.tooltip-total-votes:before {
+.tooltip-total-votes:hover:before {
 	.tooltip;
 	content: "total votes";
 }

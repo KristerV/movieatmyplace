@@ -57,7 +57,7 @@ Template.movies.events({
 		Events.update({_id: Session.get('eId')}, {$pull: item});
 	},
 	
-	'mouseenter .vote': function(e, tmpl) {
+	/*'mouseenter .vote': function(e, tmpl) {
 		$('.tooltip-my-vote, .tooltip-total-votes').removeClass('tooltip-my-vote tooltip-total-votes');
 		$(e.target).parent().addClass('tooltip-my-vote');
 		Meteor.setTimeout(function(){
@@ -71,7 +71,7 @@ Template.movies.events({
 		Meteor.setTimeout(function(){
 			$(e.target).parent().removeClass('tooltip-total-votes');
 		}, 1000);
-	},
+	},*/
 });
 
 findMovieIndexInCollectionById = function(movieId) {
@@ -133,7 +133,9 @@ changeMovieVote = function(e, vote) {
 
 displayVoteResult = function(movieId, vote) {
 	$('#' + movieId).addClass(vote);
+	$('#' + movieId + " .vote").addClass('animating');
 	Meteor.setTimeout(function(){
 		$('#' + movieId).removeClass(vote);
+		$('#' + movieId + " .vote").removeClass('animating');
 	}, 2000);
 }
