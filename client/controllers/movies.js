@@ -91,6 +91,14 @@ Template.movies.rendered = function() {
 				$(node).insertBefore(next).stop(true, true).animate({ height: 'toggle', opacity: 1 }, 'slow');
 			});
 		},
+		removeElement: function (node, next) {
+			$(node).slideUp().promise().done(function(){
+				$(node).remove();
+			});
+		},
+		insertElement: function (node, next) {
+			$(node).insertBefore(next).hide().slideDown();
+		},
 	};
 }
 
