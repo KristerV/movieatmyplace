@@ -7,7 +7,7 @@ Template.trailer.helpers({
 Template.trailer.events({
 	'click p': function(e, tmpl) {
 		var node = $('.trailer-container');
-		if ($(document).width() <= 600)
+		if ($(document).width() <= 800)
 			node.animate({right: '-100%'}).promise().done(function(){
 				Session.set('youtubeTerms', null);
 			});
@@ -20,8 +20,8 @@ Template.trailer.events({
 
 Template.trailer.rendered = function() {
 	var node = $(this.firstNode);
-	console.log($(document).height());
-	if ($(document).width() <= 600)
+	node.removeClass('trailer-hidden');
+	if ($(document).width() <= 800)
 		node.css('right', '-100%').animate({right: '0'});
 	else
 		node.css('right', '-50%').animate({right: '0.5em'});

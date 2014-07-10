@@ -13,8 +13,11 @@ Template.body.helpers({
 		$.backstretch(url);
 		return url;
 	},
-	youtubePlayerReady: function() {
+	youtubePlayer: function() {
 		return isset(Session.get('youtubeTerms')) ? true : false;
+	},
+	youtubePlayerReady: function() {
+		return isset(Session.get('youtubeTerms')) && $(document).width() > 800 ? true : false;
 	},
 	anyMovies: function() {
 		var Event = Events.findOne({_id: Session.get('eId')}, {sort: {'movies.$.votesSum': -1}});
