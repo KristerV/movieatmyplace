@@ -37,6 +37,11 @@ input {
     &.make-room, &.make-room .outro {
         padding-right: 50%;
     }
+    @media all and (max-width: 800px) {
+        &.make-room, &.make-room .outro {
+            padding-right: 0;
+        }
+    }
     .no-movies {
         color: rgba(0,0,0,0.3);
     }
@@ -77,9 +82,6 @@ input {
         -webkit-box-shadow: none;
         box-shadow: none;
         background-color: transparent;
-        /*&.make-room {
-            padding-right: 50%;
-        }*/
     }
 }
 

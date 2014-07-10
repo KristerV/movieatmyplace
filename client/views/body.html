@@ -14,7 +14,7 @@
 		{{else}}
 
 			<!-- Title section -->
-			<div class="section {{#if youtubePlayerReady}}make-room{{/if}}" style="{{#if coverImage}}{{else}}-webkit-text-stroke:0;background-color:#f5f5f5;color: black;text-shadow:none;{{/if}}">
+			<div class="section {{#if youtubePlayer}}make-room{{/if}}" style="{{#if coverImage}}{{else}}-webkit-text-stroke:0;background-color:#f5f5f5;color: black;text-shadow:none;{{/if}}">
 				{{#if isEditMode}}
 					<h2>Invite friends over for a movie,<br>let them choose what to watch by voting</h2>
 				{{else}}
@@ -24,7 +24,7 @@
 
 			<!-- Event details section -->
 			{{#if isEditMode}}
-				<div class="section {{#if youtubePlayerReady}}make-room{{/if}}">
+				<div class="section {{#if youtubePlayer}}make-room{{/if}}">
 					<h3 style="margin-bottom: 0.5em;">Your event details</h3>
 					<sup class="super-script">no information is required</sup>
 					{{> host}}
@@ -32,7 +32,7 @@
 			{{/if}}
 
 			<!-- Movies section -->
-			<div class="section {{#if youtubePlayerReady}}make-room{{/if}}">
+			<div class="section {{#if youtubePlayer}}make-room{{/if}}">
 				{{#if isEditMode}}
 					<h3>List movies you want to see</h3>
 				{{else}}
@@ -51,7 +51,7 @@
 
 			<!-- Sharing link section -->
 			{{#if friendsInvite}}
-				<div class="section {{#if youtubePlayerReady}}make-room{{/if}}">
+				<div class="section {{#if youtubePlayer}}make-room{{/if}}">
 					{{#if isEditMode}}
 						<h3>Invite friends by sharing this link</h3>
 					{{else}}
@@ -62,7 +62,7 @@
 			{{/if}}
 
 			<!-- Bottom information section -->
-			<div class="section {{#if youtubePlayerReady}}make-room{{/if}} {{#if coverImage}}with-background-image{{else}}no-background-image{{/if}}">
+			<div class="section {{#if youtubePlayer}}make-room{{/if}} {{#if coverImage}}with-background-image{{else}}no-background-image{{/if}}">
 				{{> outro}}
 			</div>
 		{{/if}}
