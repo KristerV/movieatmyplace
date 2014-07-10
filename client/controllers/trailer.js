@@ -15,5 +15,9 @@ Template.trailer.events({
 
 Template.trailer.rendered = function() {
 	var node = $(this.firstNode);
-	node.css('right', '-50%').animate({right: '0.5em'});
+	console.log($(document).height());
+	if ($(document).width() <= 600)
+		node.css('right', '-50%').animate({right: '0'});
+	else
+		node.css('right', '-50%').animate({right: '0.5em'});
 }
