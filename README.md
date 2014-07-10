@@ -13,11 +13,7 @@ See it live
 
 http://movieatmyplace.com
 
-Install yourself (not complete)
--------------------------------
+License
+-------
 
-- clone
-- install meteor
-- install meteorite
-- mrt add npm
-- meteor
+MIT license
