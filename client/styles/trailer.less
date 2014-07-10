@@ -1,4 +1,9 @@
 .trailer-container {
+	-webkit-transition: right 0.2s ease-out;
+	-moz-transition: right 0.2s ease-out;
+	-o-transition: right 0.2s ease-out;
+	transition: right 0.2s ease-out;
+
 	display: flex;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -20,6 +25,9 @@
 	box-shadow: 0 20px 20px -10px rgba(0,0,0,0.4);
 	border: 1px outset #D9D9D9;
 	box-sizing: border-box;
+	&.trailer-hidden {
+		right: -50%;
+	}
 	p {
 		flex: 1 1 10%;
 		font-size: 0.7em;
@@ -57,6 +65,9 @@
 	box-shadow: none;
 	border: none;
 	z-index: 99;
+	&.trailer-hidden {
+		right: -100%;
+	}
 	iframe {
 		padding: 0;
 	}
