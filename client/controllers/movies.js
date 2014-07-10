@@ -87,8 +87,8 @@ Template.movies.rendered = function() {
 	this.firstNode._uihooks = {
 		moveElement: function (node, next) {
 			console.log(node);
-			$(node).stop(true, true).animate({/*height: 'toggle', */opacity: 0 }, 'slow').promise().done(function(){
-				$(node).insertBefore(next).stop(true, true).animate({ /*height: 'toggle', */opacity: 1 }, 'slow');
+			$(node).stop(true, true).animate({height: 'toggle', opacity: 0 }, 'slow').promise().done(function(){
+				$(node).insertBefore(next).stop(true, true).animate({ height: 'toggle', opacity: 1 }, 'slow');
 			});
 		},
 	};
