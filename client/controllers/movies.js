@@ -8,10 +8,6 @@ Template.movies.helpers({
 			if (!isset(ordered))
 				return false;
 			return ordered;
-			// Perhaps useful some other time
-			// var ordered = Event.movies.sort(function(a, b){
-			// 	return a.votesSum < b.votesSum;
-			// });
 		}
 	},
 
@@ -87,7 +83,6 @@ findMovieIndexInCollectionById = function(movieId) {
 Template.movies.rendered = function() {
 	this.firstNode._uihooks = {
 		moveElement: function (node, next) {
-			console.log(node);
 			$(node).stop(true, true).animate({height: 'toggle', opacity: 0 }, 'slow').promise().done(function(){
 				$(node).insertBefore(next).stop(true, true).animate({ height: 'toggle', opacity: 1 }, 'slow');
 			});

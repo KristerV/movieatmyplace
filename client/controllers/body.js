@@ -7,7 +7,6 @@ Template.body.helpers({
 	},
 	coverImage: function() {
 		var url = Session.get('topTrailer');
-		console.log(url);
 		if (!isset(url))
 			return false;
 		$.backstretch(url);
