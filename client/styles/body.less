@@ -6,7 +6,6 @@
 	text-align: center;
     height: 100%;
     background-color: transparent;
-    // min-width: 550px;
     table {
         width: 100%;
     }
@@ -26,10 +25,18 @@ input {
 }
 
 .section {
+    -webkit-transition: padding 0.2s ease-out;
+    -moz-transition: padding 0.2s ease-out;
+    -o-transition: padding 0.2s ease-out;
+    transition: padding 0.2s ease-out;
+
     padding-left: 0.5em;
     padding-right: 0.5em;
     padding-top: 1em;
     padding-bottom: 2em;
+    &.make-room, &.make-room .outro {
+        padding-right: 50%;
+    }
     .no-movies {
         color: rgba(0,0,0,0.3);
     }
@@ -65,21 +72,19 @@ input {
         -webkit-text-stroke: 1px rgba(0,0,0,0.5);
     }
     &:last-child {
-        padding:0;
+        padding: 0;
         margin: 0;
         -webkit-box-shadow: none;
         box-shadow: none;
         background-color: transparent;
+        /*&.make-room {
+            padding-right: 50%;
+        }*/
     }
 }
 
 .transparent {
     color: transparent;
-}
-
-.left-container {
-    // min-width: 600px;
-    width: 100%;
 }
 
 // Autocomplete loader spinner

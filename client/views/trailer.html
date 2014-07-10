@@ -1,5 +1,6 @@
 <template name="trailer">
-	<iframe id="ytplayer" type="text/html"
-	  src="//www.youtube.com/embed/{{youtubeHash}}?autoplay=1&origin=http://movieatmyplace.com&output=embed"
-	  frameborder="0"></iframe>
+	<div class="trailer-container">
+		<p>check playlist for more trailers</p><p class="close">x</p>
+		<iframe src="http://www.youtube.com/embed?listType=search&amp;list={{youtubeTerms}}&amp;autoplay=1" frameborder="0" allowfullscreen></iframe>
+	</div>
 </template>

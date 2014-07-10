@@ -1,5 +1,5 @@
 
-searchYoutube = function(term) {
+searchYoutubeString = function(term) {
 	var API = "http://gdata.youtube.com/feeds/api/videos?callback=?";
 	var parameters = {
 		q: 'asdasdasdasdasdasdpoijspdofijaspoidjfaposdjifpoasidjfpaosuidfhpi7',

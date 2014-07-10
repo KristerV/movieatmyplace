@@ -1,73 +1,71 @@
 
 <template name="body">
+	
+	{{#if youtubePlayerReady}}
+		{{> trailer}}
+	{{/if}}
+
 	<div class="bodycontent">
-		<div style="position:fixed;width:100%;height:100%;z-index:-9;{{#if coverImage}}{{else}}background-color: rgb(230,230,230);{{/if}}">
-		</div>
 		{{#if isPopup}}
 			{{> popup}}
 		{{/if}}
 		{{#if isLoading}}
 			{{> loading}}
 		{{else}}
-			<div class="left-container" style="{{#if youtubePlayerReady}}width:50%{{/if}}">
 
-				<!-- Title section -->
-				<div class="section" style="{{#if coverImage}}{{else}}-webkit-text-stroke:0;background-color:#f5f5f5;color: black;text-shadow:none;{{/if}}">
-					{{#if isEditMode}}
-						<h2>Invite friends over for a movie,<br>let them choose what to watch by voting</h2>
-					{{else}}
-						<h2>{{name}}{{phone}} has invited you to see a movie{{location}}{{time}}.</h2>
-					{{/if}}
-				</div>
-
-				<!-- Event details section -->
+			<!-- Title section -->
+			<div class="section {{#if youtubePlayerReady}}make-room{{/if}}" style="{{#if coverImage}}{{else}}-webkit-text-stroke:0;background-color:#f5f5f5;color: black;text-shadow:none;{{/if}}">
 				{{#if isEditMode}}
-					<div class="section">
-						<h3 style="margin-bottom: 0.5em;">Your event details</h3>
-						<sup class="super-script">no information is required</sup>
-						{{> host}}
-					</div>
+					<h2>Invite friends over for a movie,<br>let them choose what to watch by voting</h2>
+				{{else}}
+					<h2>{{name}}{{phone}} has invited you to see a movie{{location}}{{time}}.</h2>
+				{{/if}}
+			</div>
+
+			<!-- Event details section -->
+			{{#if isEditMode}}
+				<div class="section {{#if youtubePlayerReady}}make-room{{/if}}">
+					<h3 style="margin-bottom: 0.5em;">Your event details</h3>
+					<sup class="super-script">no information is required</sup>
+					{{> host}}
+				</div>
+			{{/if}}
+
+			<!-- Movies section -->
+			<div class="section {{#if youtubePlayerReady}}make-room{{/if}}">
+				{{#if isEditMode}}
+					<h3>List movies you want to see</h3>
+				{{else}}
+					<h3>Vote for movies you would like to see</h3>
 				{{/if}}
 
-				<!-- Movies section -->
-				<div class="section">
+				{{#if anyMovies}}
+					{{> movies}}
+				{{else}}
+					<p class="no-movies">No movies entered yet</p>
+				{{/if}}
+				{{#if friendsAddMovies}}
+					{{> movieadd}}
+				{{/if}}
+			</div>
+
+			<!-- Sharing link section -->
+			{{#if friendsInvite}}
+				<div class="section {{#if youtubePlayerReady}}make-room{{/if}}">
 					{{#if isEditMode}}
-						<h3>List movies you want to see</h3>
+						<h3>Invite friends by sharing this link</h3>
 					{{else}}
-						<h3>Vote for movies you would like to see</h3>
+						<h3>Invite more friends</h3>
 					{{/if}}
-
-					{{#if anyMovies}}
-						{{> movies}}
-					{{else}}
-						<p class="no-movies">No movies entered yet</p>
-					{{/if}}
-					{{#if friendsAddMovies}}
-						{{> movieadd}}
-					{{/if}}
+					{{> share}}
 				</div>
+			{{/if}}
 
-				<!-- Sharing link section -->
-				{{#if friendsInvite}}
-					<div class="section">
-						{{#if isEditMode}}
-							<h3>Invite friends by sharing this link</h3>
-						{{else}}
-							<h3>Invite more friends</h3>
-						{{/if}}
-						{{> share}}
-					</div>
-				{{/if}}
-
-				<!-- Bottom information section -->
-				<div class="section {{#if coverImage}}with-background-image{{else}}no-background-image{{/if}}">
-					{{> outro}}
-				</div>
+			<!-- Bottom information section -->
+			<div class="section {{#if youtubePlayerReady}}make-room{{/if}} {{#if coverImage}}with-background-image{{else}}no-background-image{{/if}}">
+				{{> outro}}
 			</div>
 		{{/if}}
 
-		{{#if youtubePlayerReady}}
-			{{> trailer}}
-		{{/if}}
 	</div>
 </template>

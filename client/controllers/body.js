@@ -7,13 +7,14 @@ Template.body.helpers({
 	},
 	coverImage: function() {
 		var url = Session.get('topTrailer');
+		console.log(url);
 		if (!isset(url))
 			return false;
 		$.backstretch(url);
 		return url;
 	},
 	youtubePlayerReady: function() {
-		return Session.get('youtubePlayer') ? true : false;
+		return isset(Session.get('youtubeTerms')) ? true : false;
 	},
 	anyMovies: function() {
 		var Event = Events.findOne({_id: Session.get('eId')}, {sort: {'movies.$.votesSum': -1}});
