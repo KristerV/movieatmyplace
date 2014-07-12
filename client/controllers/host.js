@@ -6,7 +6,17 @@ Template.host.helpers({
 			delete Event.host['friendsInvite'];
 			return getKeyValuePairs(Event['host']);
 		}
-	}
+	},
+	isCheckedFriendsAddMovies: function() {
+		var Event = Events.findOne({_id: Session.get('eId')});
+		var value = isset(Event.host['friendsAddMovies']) ? Event.host['friendsAddMovies'] : false;
+		return value ? 'checked' : false;
+	},
+	isCheckedEncourageInvite: function() {
+		var Event = Events.findOne();
+		var value = isset(Event.host['friendsInvite']) ? Event.host['friendsInvite'] : false;
+		return value ? 'checked' : false;
+	},
 });
 
 Template.host.events({
