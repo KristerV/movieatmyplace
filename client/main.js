@@ -99,7 +99,8 @@ Meteor._reload.onMigrate(function(reloadFunction) {
 		});
 		return [false];
 	} else {
-		return [true];
+		window.location.reload(); // Refreshing works better for checkboxes
+		return [false];
 	}
 });
 
