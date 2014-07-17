@@ -24,6 +24,8 @@ Template.movieadd.events({
 		e.preventDefault();
 
 		var formData = getFormData('form[name="movieadd"]');
+		if (formData.title.length <= 1)
+			return false;
 		formData['youtube'] = '';
 		formData['votes'] = {};
 		formData['votesSum'] = 0;
