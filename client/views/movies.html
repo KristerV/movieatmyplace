@@ -3,7 +3,7 @@
 		{{#each movies}}
 			<div class="movie" id="{{_id}}" originalOrder="{{originalOrder}}">
 
-				<div class="title tooltip-trailer">{{title}}</div>
+				<div class="title tooltip-trailer">{{title}} <span class="small-text">({{year}})</span></div>
 
 				{{#if isEditMode}}
 					<div class="delete">delete</div>
