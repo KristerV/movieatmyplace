@@ -25,7 +25,7 @@
 			<!-- Event details section -->
 			{{#if isEditMode}}
 				<div class="section {{#if youtubePlayer}}make-room{{/if}}">
-					<h3 style="margin-bottom: 0.5em;">Your event details</h3>
+					<h3 style="margin-bottom: 0em;">Your event details</h3>
 					<sup class="super-script">no information is required</sup>
 					{{> host}}
 				</div>
@@ -36,7 +36,8 @@
 				{{#if isEditMode}}
 					<h3>List movies you want to see</h3>
 				{{else}}
-					<h3>Vote for movies you would like to see</h3>
+					<h3 style="margin-bottom: 0em;">Vote for movies</h3>
+					<sup class="super-script">You can vote <strong>up</strong> or <strong>down</strong> for <strong>each</strong> movie</sup>
 				{{/if}}
 
 				{{#if anyMovies}}
