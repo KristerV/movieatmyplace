@@ -1,12 +1,6 @@
 .outro {
-    -webkit-transition: background-color 0.2s ease-out;
-    -moz-transition: background-color 0.2s ease-out;
-    -o-transition: background-color 0.2s ease-out;
-    transition: background-color 0.2s ease-out;
-
     font-size: 0.7em;
     line-height: 1.2em;
-    color: rgba(0,0,0,0.5);
     h2 {
 	    line-height: 1.5em;
 	}
@@ -14,16 +8,22 @@
         padding-top: 2em;
         padding-bottom: 2em;
         margin:0;
-        text-shadow:
-             1px 1px 2px #000;
     }
     #outro-hidden {
+        -webkit-transition: color 0.2s ease-out;
+        -moz-transition: color 0.2s ease-out;
+        -o-transition: color 0.2s ease-out;
+        transition: color 0.2s ease-out;
         background-color: rgba(230,230,230,0);
         display: none;
         width: 100%;
         flex-flow: row wrap;
         justify-content: space-around;
         a:link, a:visited, a:active, .underline{
+            -webkit-transition: color 0.2s ease-out;
+            -moz-transition: color 0.2s ease-out;
+            -o-transition: color 0.2s ease-out;
+            transition: color 0.2s ease-out;
             color: rgba(0,0,0,0.5);
             border-bottom: 1px solid rgba(0,0,0,0.5);
             text-shadow: none;
@@ -35,9 +35,13 @@
     }
     .flex {display: flex;}
  }
+ .with-background-image #outro-mini {
+    text-shadow: 1px 1px 2px #000;
+ }
 .with-background-image {
     color: rgba(255,255,255,0.8);
     a:link, a:visited, a:active, .underline{
+        text-shadow: 1px 1px 2px #000;
         color: rgba(255,255,255,0.8);
         border-bottom: 1px solid rgba(255,255,255,0.8);
         text-decoration: none;
@@ -46,6 +50,7 @@
 .no-background-image {
     color: rgba(0,0,0,0.5);
     text-shadow: none;
+    background-color: rgba(230,230,230,0.9);
     a:link, a:visited, a:active, .underline{
         color: rgba(0,0,0,0.5);
         border-bottom: 1px solid rgba(0,0,0,0.5);
