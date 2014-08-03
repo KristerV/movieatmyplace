@@ -8,6 +8,25 @@
         padding-top: 2em;
         padding-bottom: 2em;
         margin:0;
+        form[name=quickFeedback] {
+            max-width: 200px;
+            display: inline-block;
+            ::-webkit-input-placeholder {
+                padding-top: 0.3em;
+            }
+
+            :-moz-placeholder { 
+                padding-top: 0.3em;
+            }
+
+            ::-moz-placeholder {
+                padding-top: 0.3em;
+            }
+
+            :-ms-input-placeholder {  
+                padding-top: 0.3em;
+            }
+        }
     }
     #outro-hidden {
         -webkit-transition: color 0.2s ease-out;

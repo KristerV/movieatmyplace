@@ -20,5 +20,21 @@ Template.outro.events({
 				$('.section:last-child').addClass("with-background-image");
 			}
 		}
+	},
+	'blur form[name=quickFeedback], submit form[name=quickFeedback]': function(e, tmpl) {
+		e.preventDefault();
+		var data = getFormData('form[name=quickFeedback]');
+		if (!isset(data['body']))
+			return false;
+		var body = data.body;
+		Meteor.call('emailFeedback', body, Session.get('eventId'));
+		$('form[name=quickFeedback] input').prop('value', '').prop('placeholder', 'Sending...')
+		Meteor.setTimeout(function(){
+			$('form[name=quickFeedback] input').prop('placeholder', 'Sent. Thanks!')
+
+			Meteor.setTimeout(function(){
+				$('form[name=quickFeedback] input').prop('placeholder', 'Quick feedback...')
+			}, 900)
+		}, 1200)
 	}
 });
