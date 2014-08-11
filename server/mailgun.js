@@ -1,7 +1,3 @@
-process.env['MAILGUN_API_KEY'] = "key-1talxhfv0icwp3725e5yjgf2jx0wp792";
-process.env['MAILGUN_DOMAIN'] = "movieatmyplace.com";
-process.env['MAILGUN_API_URL'] = "https://api.mailgun.net/v2";
-
 Meteor.startup(function () {
 
 	Meteor.methods({
