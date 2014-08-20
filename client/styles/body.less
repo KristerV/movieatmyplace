@@ -93,21 +93,35 @@ input {
 
 // Autocomplete loader spinner
 @-webkit-keyframes rotate {
-  from {
-    -webkit-transform: rotate(360deg);
-  }
-  to { 
-    -webkit-transform: rotate(0deg);
+  100% {
+    -webkit-transform: rotate(-360deg);
+       -moz-transform: rotate(-360deg);
+        -ms-transform: rotate(-360deg);
+         -o-transform: rotate(-360deg);
+            transform: rotate(-360deg);
   }
 }
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(-360deg);
+       -moz-transform: rotate(-360deg);
+        -ms-transform: rotate(-360deg);
+         -o-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+  }
+}
+
 .spin
 {
     margin-left: 1em;
     margin-right: 1em;
     margin-top: 0em;
     margin-bottom: 0em;
-    -webkit-animation-name:             rotate; 
-    -webkit-animation-duration:         1s; 
-    -webkit-animation-iteration-count:  infinite;
-    -webkit-animation-timing-function: linear;
+
+    -webkit-animation: rotate 1s linear infinite;
+       -moz-animation: rotate 1s linear infinite;
+        -ms-animation: rotate 1s linear infinite;
+         -o-animation: rotate 1s linear infinite;
+            animation: rotate 1s linear infinite;
 }
